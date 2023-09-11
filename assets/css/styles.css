@@ -1,0 +1,22 @@
+
+.escudos{
+    background-color: #bd82ff;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+
+
+}
+
+.sm1 , .sm2{
+    height: 200px;
+}
+
+.guanajuato{
+    height: 100px;
+}
+
+
+

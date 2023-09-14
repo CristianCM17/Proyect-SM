@@ -1,6 +1,8 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Poppins:wght@100;400&family=Roboto+Mono:ital,wght@0,100;1,300&display=swap');
+
 .escudos{
-    background-color: #bd82ff;
+    background-color: #c57fe5;
     height: 130px;
     display: flex;
     align-items: center;

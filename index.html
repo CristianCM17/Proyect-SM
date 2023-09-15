@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./assets/css/styles.css">
     <link rel="stylesheet" href="./assets/css/services.css">
     <link rel="stylesheet" href="./assets/css/noticias.css">
+    <link rel="stylesheet" href="./assets/css/footer.css">
     
   
     
@@ -25,16 +26,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#"><h3>Inicio</h3><span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Acerca de nosotros</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="#servicios"><h3>Servicios</h3></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link">Contacto</a>
+            <li class="nav-item active" >
+              <a class="nav-link" href="#noticias"><h3>Noticias</h3></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link">Turismo</a>
+            <li class="nav-item active">
+              <a class="nav-link" href="#"><h3>Acerca de nosotros</h3></a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
@@ -77,7 +78,7 @@
       </div>
     </div>
 
-    <section class="servicios">
+    <section class="servicios" id="servicios">
       <div class="container">
 
           <div class="contenedorTitulo"></div>
@@ -129,7 +130,7 @@
                           </div>
                           <div class="text-wrap vcenter">
                               <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Pago de luz o agua</h2>
-                              <p class="mbr-fonts-style text1 mbr-text display-6">Se dispone del servicio de pago de luz o agua en base a las fechas publicadas.</p>
+                              <p class="mbr-fonts-style text1 mbr-text display-6">Se dispone del servicio de pago de agua en base a las fechas publicadas.</p>
                           </div>
                       </div>
                   </div>
@@ -143,8 +144,30 @@
       
       </section>
 
+      <section class="seccionImportante">
+        <div>
+            <h2>
+                Presidencia Municipal en coordinación con la dirección de Deportes y atención a la Juventud, te invita a participar en el torneo de Voleibol.
+            </h2>
+            <hr>
+            <p>
+                El cual dará inicio el día viernes 08 de septiembre a las 5:00 pm en el Auditorio Municipal.
+                El torneo se llevará a cabo todos los viernes.
+                Inscripciones abiertas a partir del 01 de septiembre en las oficinas de deporte y atención a la Juventud.
+                <br>
+                <strong>Costo de inscripción: $500 pesos por equipo.</strong>
+                <br>
+                <Strong>Premiación: $5,000.</Strong>
+            </p>
+        </div>
+        <div class="contImgImp">
+            <img src="./assets/img/TorneoVoleyjpg.jpg">
+        </div>
+      </section>
 
-        
+
+    <section class="noticias" id="noticias">   
+        <h2 class="noticiasTitulo">Noticias</h2>    
         <!--Start code-->
         <div class="row">
             <div class="col-12 pb-5">
@@ -397,8 +420,54 @@
         </div>
         <!--end code-->
         
-    </div>
-        
+         </div>
+    </section>     
+    
+    <footer class="section footer-classic context-dark bg-image" style="background: #1b2b50;">
+        <div class="container">
+          <div class="row row-30">
+            <div class="col-md-4 col-xl-5">
+              <div class="pr-xl-4"><a class="brand" href="index.html"><img class="brand-logo-light" src="images/agency/logo-inverse-140x37.png" alt="" width="140" height="37" srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
+                <p>We are an award-winning creative agency, dedicated to the best result in web design, promotion, business consulting, and marketing.</p>
+                <!-- Rights-->
+                <p class="rights"><span>©  </span><span class="copyright-year">2018</span><span> </span><span>Waves</span><span>. </span><span>All Rights Reserved.</span></p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <h5>Contacts</h5>
+              <dl class="contact-list">
+                <dt>Address:</dt>
+                <dd>798 South Park Avenue, Jaipur, Raj</dd>
+              </dl>
+              <dl class="contact-list">
+                <dt>email:</dt>
+                <dd><a href="mailto:#">dkstudioin@gmail.com</a></dd>
+              </dl>
+              <dl class="contact-list">
+                <dt>phones:</dt>
+                <dd><a href="tel:#">https://karosearch.com</a> <span>or</span> <a href="tel:#">https://karosearch.com</a>
+                </dd>
+              </dl>
+            </div>
+            <div class="col-md-4 col-xl-3">
+              <h5>Links</h5>
+              <ul class="nav-list">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contacts</a></li>
+                <li><a href="#">Pricing</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row no-gutters social-container">
+          <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-facebook"></span><span>Facebook</span></a></div>
+          <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-instagram"></span><span>instagram</span></a></div>
+          <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-twitter"></span><span>twitter</span></a></div>
+          <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-youtube-play"></span><span>google</span></a></div>
+        </div>
+      </footer>
 
 
     

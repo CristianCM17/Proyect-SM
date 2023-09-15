@@ -11,6 +11,7 @@ section[id]{
    scroll-margin-top: 70px;
 }
 
+
 .escudos{
     background-color: #735caa;
     height: 130px;
@@ -76,6 +77,7 @@ hr{
 .seccionImportante div{
     margin-left: 100px;
     margin-right: 100px ;
+   
     
 }
 
@@ -93,6 +95,27 @@ hr{
 .noticias{
     background-color: #f3e7f6 ;
 }
+
+.about{
+    background: linear-gradient(#FFF,#ead3ef);
+    padding-bottom: 50px;
+}
+
+.about div{
+    margin-top: 50px;
+}
+
+.ubicacionParrafo{
+    font-size: 20px;
+    font-style: italic;
+}
+
+.mapa{
+    display: flex;
+   justify-content: center;
+   
+}
+
 
 @media screen and (max-width: 1040px) {
     .seccionImportante {

@@ -38,7 +38,7 @@ h3{
 }
 
 h2{
-    font-family: 'Poppins', sans-serif;;
+    font-family: 'Poppins', sans-serif;
     font-size: 3rem;
     color: #000;
     font-weight: bold;   
@@ -72,28 +72,87 @@ hr{
 
 .seccionImportante{
     background: linear-gradient(#FFF,#f3e7f6); 
+
 }
 
 .seccionImportante div{
     margin-left: 100px;
-    margin-right: 100px ;
+    margin-right: 100px;
    
     
 }
 
 
-.contImgImp{
+.contImgImp, .contImgTrans{
     border-radius: 10px;
     box-shadow: 10px 0px 15px rgba(0, 0, 0, 0.5), -10px 0px 15px rgba(0, 0, 0, 0.5);
 }
 
-.contImgImp img{
+.expliTransporte{
+    margin-top: 100px;
+   background-color: #ead3ef;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.tituloTransporte{
+    color: #5937aa;
+    
+}
+
+.contImgImp img {
     height: 100%;
+    
+}
+
+.contImgTrans img {
+
+    height: 500px;
     border-radius: 10px;
 }
 
+
+.tramiteTarjeta{
+
+    margin-top: 100px;
+    display: flex;
+    padding-left: 100px;
+    padding-right: 100px;
+    gap: 100px;
+    justify-content: center;
+    margin-bottom: 100px;
+
+}
+
+.IndicacionesTarjeta{
+    text-align: center;
+    
+}
+
+.IndicacionesTarjeta h2{
+    color: #735caa;
+}
+
+
+.listaRequisitosTarjeta li {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: larger;
+    font-style: oblique;
+    margin-top: 10px;
+}
+
+
 .noticias{
     background-color: #f3e7f6 ;
+    margin-top: 0;
+
+    
 }
 
 .about{
@@ -120,6 +179,16 @@ hr{
 @media screen and (max-width: 1040px) {
     .seccionImportante {
         display: flex;
+        flex-wrap: wrap;
+    }
+
+     .expliTransporte{
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+        
+    }
+
+    .tramiteTarjeta{
         flex-wrap: wrap;
     }
 }

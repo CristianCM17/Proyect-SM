@@ -76,6 +76,7 @@ hr{
 }
 
 .seccionImportante div{
+    margin-top: 50px;
     margin-left: 100px;
     margin-right: 100px;
    
@@ -150,9 +151,12 @@ hr{
 
 .noticias{
     background-color: #f3e7f6 ;
-    margin-top: 0;
 
     
+}
+
+.main{
+    background-color: #f3e7f6 ;
 }
 
 .about{

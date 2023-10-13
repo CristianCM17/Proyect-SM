@@ -61,8 +61,11 @@ h2 {
 }
 .display-6 {
     font-family: 'Source Sans Pro',sans-serif;
-    font-size: 1re}
+    font-size: 1rem;
+}
 
-
+.divAPagos, .divCredencial, .divRegistroCivil {
+    cursor: pointer;
+}
 
 

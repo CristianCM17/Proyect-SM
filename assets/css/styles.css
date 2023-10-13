@@ -12,7 +12,7 @@ section[id]{
 }
 
 p{
-    font-family: 'Poppins', sans-serif;;
+    font-family: 'Poppins', sans-serif;
 }
 
 
@@ -88,7 +88,7 @@ hr{
 }
 
 
-.contImgImp, .contImgTrans{
+.contImgImp, .contImgTrans {
     border-radius: 10px;
     box-shadow: 10px 0px 15px rgba(0, 0, 0, 0.5), -10px 0px 15px rgba(0, 0, 0, 0.5);
 }
@@ -182,6 +182,20 @@ hr{
    justify-content: center;
    
 }
+
+.btnCarrito{
+    color: #5937aa;
+    font-style: bold;
+    font-weight: bold;   
+   
+}
+
+.cartas{
+   margin-bottom: 10px;
+   
+}
+
+
 
 
 @media screen and (max-width: 1040px) {

@@ -190,9 +190,14 @@ hr{
    
 }
 
-.cartas{
-   margin-bottom: 10px;
+.cartas, .cartasmas{
+  padding-top: 10px;
+  
    
+}
+
+.cartasbody{
+    text-align: center;
 }
 
 

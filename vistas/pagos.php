@@ -2,9 +2,11 @@
 require_once '../models/pagosModel.php';
 require_once '../models/conexion.php';
 include_once '../adodb5/adodb.inc.php';
+include '../controlers/ctrlPagos.php';
 
-  $pagos= new PagosModel();
-  echo $pagos->getAll();
+  
+$pagosModel= new PagosModel();
+$pagos=$pagosModel->getAll();
 
 ?>
 
@@ -44,7 +46,7 @@ include_once '../adodb5/adodb.inc.php';
                 <a class="nav-link" href="./aboutUs.html"><h3>Acerca de nosotros</h3></a>
               </li>
               <li class="nav-item active">
-                <button class="btn btn-outline-dark btnCarrito">Carrito(0)</button>
+                <button class="btn btn-outline-dark btnCarrito">Carrito (<span id="cantidadCarrito"></span>)</button>
               </li>
               
             </ul>
@@ -62,52 +64,58 @@ include_once '../adodb5/adodb.inc.php';
             </div>
       </header>
 
-    <!--Pagos disponibles-->
-    <div class="row">
-        <div class="col-sm-6 cartas">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title">Special title treatment</h5>
-              <h3 class="card-subtitle mb-2 text-muted">$250</h6>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 cartas">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title">Special title treatment</h5>
-              <h3 class="card-subtitle mb-2 text-muted">$2500</h6>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 cartas">
-            <div class="card">
-              <div class="card-body">
-                <h2 class="card-title">Special title treatment</h5>
-                <h3 class="card-subtitle mb-2 text-muted">$2500</h6>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Agregar al carrito</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 cartas">
-            <div class="card">
-              <div class="card-body">
-                <h2 class="card-title">Special title treatment</h5>
-                <h3 class="card-subtitle mb-2 text-muted">$2500</h6>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Agregar al carrito</a>
-              </div>
-            </div>
-          </div>
+      <div class="alert alert-success">
+        <?php echo $mensaje; ?>
       </div>
 
+    <!--Pagos disponibles-->
+    <div class="row cartasmas">
+        <?php
+        
+        while(!$pagos->EOF){
 
+        ?>
+        <div class="col-sm-6 cartas">
+          <div class="card">
+            <div class="card-body cartasbody">
+              <h2 class="card-title"><?php echo $pagos->fields[1]?></h5>
+              <h3 class="card-subtitle mb-2 text-muted">$<?php echo $pagos->fields[2]?></h6>
+              <p class="card-text"><?php echo $pagos->fields[3].' '.$pagos->fields[4]?></p>
 
+              <form action="" method="post">
+                <input type="hidden" name="idpago" id="idpago" value="<?php echo $pagos->fields[0]?>">
+                <input type="hidden" name="pago" id="pago" value="<?php echo $pagos->fields[1]?>">
+                <input type="hidden" name="precio" id="precio" value="<?php echo $pagos->fields[2]?>">
+                <input type="hidden" name="cantidad" id="cantidad" value="<?php echo 1?>">
+             
+              <button name="btnAccion" class="btn btn-primary" type="submit" >Agregar Carrito</button>
+              </form>
+            </div>
+          </div>
+        </div>
+          <?php
+              
+              $pagos->MoveNext();
+            }
+          ?>
+      </div>
+     <!-- <input value="Agregar a Carrito" type="button" class="btn btn-primary" id="idboton" onclick=agregarCarrito(php echo $pagos->fields[0] ) ></input>-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    //const cantidadCarrito= document.getElementById('cantidadCarrito');
+
+    function agregarCarrito(id){
+          $.ajax({ // peticion post de ajax
+            type: "POST",
+            url: "../controlers/ctrlPagos.php?opc=1",
+            data: {idPago:id},
+            success: function(data){ //lo cachamos en data
+              $('#cantidadCarrito').html(data); //al elemento del titulo le ponemos el contenido
+            },
+        })
+        }
+  
+</script>
     
 </body>
 </html>

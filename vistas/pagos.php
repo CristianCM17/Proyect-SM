@@ -7,7 +7,14 @@ include_once '../adodb5/adodb.inc.php';
   
 $pagosModel= new PagosModel();
 $pagos=$pagosModel->getAll();
+$con = new Conexion();
+$db = $con->conectar();
 
+        $query = "SELECT COUNT(*) AS contador FROM carrito";
+        $reslts = $db->Execute($query);
+        $fila= $reslts->FetchRow();
+        $contador = $fila['contador'];
+       
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +26,7 @@ $pagos=$pagosModel->getAll();
     <link rel="stylesheet" href="../assets/css/styles.css">
     
     
-    <title>Document</title>
+    <title>Municipio de Santiago Maravatío</title>
 
 </head>
 <body>
@@ -46,7 +53,7 @@ $pagos=$pagosModel->getAll();
                 <a class="nav-link" href="./aboutUs.html"><h3>Acerca de nosotros</h3></a>
               </li>
               <li class="nav-item active">
-                <button class="btn btn-outline-dark btnCarrito">Carrito (<span id="cantidadCarrito"></span>)</button>
+                <button class="btn btn-outline-dark btnCarrito" onclick="irCarrito()" >Carrito (<span id="cantidadCarrito"><?php echo $contador; ?></span>)</button>
               </li>
               
             </ul>
@@ -64,11 +71,6 @@ $pagos=$pagosModel->getAll();
             </div>
       </header>
 
-    <!--  <div class="alert alert-success">
-        <php echo $mensaje; ?>
-      </div>-->
-
-    <!--Pagos disponibles-->
     <div class="row cartasmas">
         <?php
         
@@ -99,19 +101,21 @@ $pagos=$pagosModel->getAll();
             }
           ?>
       </div>
-     <!-- <input value="Agregar a Carrito" type="button" class="btn btn-primary" id="idboton" onclick=agregarCarrito(php echo $pagos->fields[0] ) ></input>-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
     
+    function irCarrito() {
+      window.location.href = "./carrito.php";
+    }
 
     function agregarCarrito(formId){
-      var formData= $('#' + formId).serialize(); //serializamos los datos del from
+      var formData= $('#' + formId).serialize(); //serializamos los datos del from dandole un id dinamico al formulario 
           $.ajax({ // peticion post de ajax
             type: "POST",
             url: "../controlers/ctrlPagos.php?opc=1",
             data: formData,
             success: function(data){ //lo cachamos en data
-              $('#cantidadCarrito').html(data); //al elemento del titulo le ponemos el contenido
+              $('#cantidadCarrito').html(data); //al elemento con ese id le ponemos el contenido que se mande
             }
         })
         }

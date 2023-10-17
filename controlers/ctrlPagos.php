@@ -14,19 +14,12 @@ include_once '../adodb5/adodb.inc.php';
                   $idpago= $_POST['idpago'];
                   $cantidad= $_POST['cantidad'];
                   $precio= $_POST['precio'];
+                  $pago=$_POST['pago'];
                   
-                  $pagosModel->agregarCarrito($idpago,$cantidad,$precio);
+                  $pagosModel->agregarCarrito($idpago,$cantidad,$precio, $pago);
                  // $mensaje=$idpago." ".$cantidad;
                     break;
 
-                case 2: // UPDATE TO BD
-                    
-                    break;
-                case 3: // DELETE TO DB
-                 
-                    break;
-                case 4: // SELECT TO DB
-                   
             }
         }else{
             header('Location: ./pagos.php');

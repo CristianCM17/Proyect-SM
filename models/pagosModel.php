@@ -14,11 +14,8 @@
       return $rs;
     }
 
-    public function agregarCarrito($idpago, $cantidad,$precio){
-     /*  $query = "SELECT precio FROM pagos WHERE idpago = $idpago";
-       $rs=$this->db->Execute($query);
-       $row=$rs->FetchRow();
-       $precio = $row['precio'];*/
+    public function agregarCarrito($idpago,$cantidad,$precio,$pago){
+      //contamos cuantos pagos estan con el mismo id
         $checkQuery = "SELECT COUNT(*) AS count FROM carrito WHERE idpago = $idpago";
        $rs = $this->db->Execute($checkQuery);
        $row=$rs->FetchRow();
@@ -28,7 +25,7 @@
            
         
       
-       
+       //cuando no tengamos ningun pago se inserta, cuando ya tengamos uno manda el echo
        if ($conteo>0) {
            echo "este prodcuto ya ha sido agregado";
        } else {
@@ -36,16 +33,19 @@
         $carrito['idpago']=$idpago;
         $carrito['cantidad']=$cantidad;
         $carrito['precio']=$precio;
+        $carrito['subtotal']=$precio;
+        $carrito['pago']=$pago;
  
         $this->db->autoExecute('carrito',$carrito,'INSERT'); //hace el insert
 
+        //le mandamos cuantos productos hay en el carrito al boton del carrito
         $query = "SELECT COUNT(*) AS contador FROM carrito";
         $reslts = $this->db->Execute($query);
         $fila= $reslts->FetchRow();
         $contador = $fila['contador'];
         echo $contador;
        }
-       //echo $idpago." ".$cantidad." ".$precio." ";
+    
        
        
     }

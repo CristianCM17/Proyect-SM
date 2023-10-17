@@ -82,13 +82,13 @@ $pagos=$pagosModel->getAll();
               <h3 class="card-subtitle mb-2 text-muted">$<?php echo $pagos->fields[2]?></h6>
               <p class="card-text"><?php echo $pagos->fields[3].' '.$pagos->fields[4]?></p>
 
-              <form action="../controlers/ctrlPagos.php?opc=1" method="post">
+              <form id="<?php echo $pagos->fields[0]?>">
                 <input type="hidden" name="idpago" id="idpago" value="<?php echo $pagos->fields[0]?>">
                 <input type="hidden" name="pago" id="pago" value="<?php echo $pagos->fields[1]?>">
                 <input type="hidden" name="precio" id="precio" value="<?php echo $pagos->fields[2]?>">
                 <input type="hidden" name="cantidad" id="cantidad" value="<?php echo 1?>">
              
-              <button name="btnAccion" class="btn btn-primary" type="submit" >Agregar Carrito</button>
+              <button onclick="agregarCarrito('<?php echo $pagos->fields[0]?>')" class="btn btn-primary" type="button" >Agregar Carrito</button>
               </form>
             </div>
           </div>
@@ -102,18 +102,19 @@ $pagos=$pagosModel->getAll();
      <!-- <input value="Agregar a Carrito" type="button" class="btn btn-primary" id="idboton" onclick=agregarCarrito(php echo $pagos->fields[0] ) ></input>-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
-    //const cantidadCarrito= document.getElementById('cantidadCarrito');
+    
 
-   /* function agregarCarrito(id){
+    function agregarCarrito(formId){
+      var formData= $('#' + formId).serialize(); //serializamos los datos del from
           $.ajax({ // peticion post de ajax
             type: "POST",
             url: "../controlers/ctrlPagos.php?opc=1",
-            data: {idPago:id},
+            data: formData,
             success: function(data){ //lo cachamos en data
               $('#cantidadCarrito').html(data); //al elemento del titulo le ponemos el contenido
-            },
+            }
         })
-        }/*
+        }
   
 </script>
     

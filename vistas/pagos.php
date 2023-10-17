@@ -2,7 +2,7 @@
 require_once '../models/pagosModel.php';
 require_once '../models/conexion.php';
 include_once '../adodb5/adodb.inc.php';
-include '../controlers/ctrlPagos.php';
+
 
   
 $pagosModel= new PagosModel();
@@ -34,7 +34,7 @@ $pagos=$pagosModel->getAll();
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#"><h3>Inicio</h3><span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="../index.html"><h3>Inicio</h3><span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item active">
                   <a class="nav-link" href="../index.html#servicios"><h3>Servicios</h3></a>
@@ -64,9 +64,9 @@ $pagos=$pagosModel->getAll();
             </div>
       </header>
 
-      <div class="alert alert-success">
-        <?php echo $mensaje; ?>
-      </div>
+    <!--  <div class="alert alert-success">
+        <php echo $mensaje; ?>
+      </div>-->
 
     <!--Pagos disponibles-->
     <div class="row cartasmas">
@@ -82,7 +82,7 @@ $pagos=$pagosModel->getAll();
               <h3 class="card-subtitle mb-2 text-muted">$<?php echo $pagos->fields[2]?></h6>
               <p class="card-text"><?php echo $pagos->fields[3].' '.$pagos->fields[4]?></p>
 
-              <form action="" method="post">
+              <form action="../controlers/ctrlPagos.php?opc=1" method="post">
                 <input type="hidden" name="idpago" id="idpago" value="<?php echo $pagos->fields[0]?>">
                 <input type="hidden" name="pago" id="pago" value="<?php echo $pagos->fields[1]?>">
                 <input type="hidden" name="precio" id="precio" value="<?php echo $pagos->fields[2]?>">
@@ -104,7 +104,7 @@ $pagos=$pagosModel->getAll();
 <script>
     //const cantidadCarrito= document.getElementById('cantidadCarrito');
 
-    function agregarCarrito(id){
+   /* function agregarCarrito(id){
           $.ajax({ // peticion post de ajax
             type: "POST",
             url: "../controlers/ctrlPagos.php?opc=1",
@@ -113,7 +113,7 @@ $pagos=$pagosModel->getAll();
               $('#cantidadCarrito').html(data); //al elemento del titulo le ponemos el contenido
             },
         })
-        }
+        }/*
   
 </script>
     

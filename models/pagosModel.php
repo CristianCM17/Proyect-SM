@@ -14,15 +14,28 @@
       return $rs;
     }
 
-  /*  public function agregarCarrito($id){
-        // Obtener el precio del producto desde la tabla de pagos (pago_id se pasa como parámetro)
-        $idpago = $id; // Ajusta esto según cómo obtengas el pago ID
+    public function agregarCarrito($idpago, $cantidad,$precio){
+     /*  $query = "SELECT precio FROM pagos WHERE idpago = $idpago";
+       $rs=$this->db->Execute($query);
+       $row=$rs->FetchRow();
+       $precio = $row['precio'];*/
+       $checkQuery = "SELECT COUNT(*) AS count FROM carrito WHERE idpago = $idpago";
+       $checkResult = $this->db->GetOne($checkQuery);
 
-        $query = "SELECT * FROM pagos";
-      $rs = $this->db->Execute($query);
-      //print_r($rs->getRows());
+       if ($checkResult<1) {
+        $carrito= array();
+       $carrito['idpago']=$idpago;
+       $carrito['cantidad']=$cantidad;
+       $carrito['precio']=$precio;
 
-    }*/
+       $this->db->autoExecute('carrito',$carrito,'INSERT'); //hace el insert
+       } else {
+          echo "Ese producto ya esta en el carrito";
+       }
+
+       
+       
+    }
     
   }
 

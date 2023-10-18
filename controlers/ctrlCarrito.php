@@ -14,6 +14,14 @@ include_once '../adodb5/adodb.inc.php';
                 $idcarro= $_POST['idcarro'];
                 $CarritoModel->delete($idcarro);
                 break;
+            case 3:
+                $idcarro= $_POST['idcarro'];
+                $pago= $_POST['pago'];
+                $cantidad= $_POST['cantidad'];
+                $precio= $_POST['precio'];
+                $subtotal= $_POST['subtotal'];
+                $CarritoModel->ActCantidad($idcarro,$pago,$cantidad,$precio,$subtotal);
+                break;
 
     }
 }else{

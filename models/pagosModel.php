@@ -15,6 +15,7 @@
     }
 
     public function agregarCarrito($idpago,$cantidad,$precio,$pago){
+
       //contamos cuantos pagos estan con el mismo id
         $checkQuery = "SELECT COUNT(*) AS count FROM carrito WHERE idpago = $idpago";
        $rs = $this->db->Execute($checkQuery);
@@ -38,7 +39,7 @@
  
         $this->db->autoExecute('carrito',$carrito,'INSERT'); //hace el insert
 
-        //le mandamos cuantos productos hay en el carrito al boton del carrito
+       
         $query = "SELECT COUNT(*) AS contador FROM carrito";
         $reslts = $this->db->Execute($query);
         $fila= $reslts->FetchRow();
@@ -58,6 +59,18 @@
         $pagos['periodo']=$periodo;
 
         $this->db->autoExecute('pagos', $pagos,'UPDATE','idpago = '.'\''.$idpago.'\''); //hace el update
+      }
+
+      public function insertar($pago,$precio,$descripcion,$periodo){
+        $pagos= array();  //crea un arreglo
+        
+        $pagos['pago']=$pago;
+        $pagos['precio']=$precio;
+        $pagos['descripcion']=$descripcion;
+        $pagos['periodo']=$periodo;
+
+        $this->db->autoExecute('pagos', $pagos,'INSERT'); //hace el update
+        echo "insertado correctamente";
       }
 
       function eliminar($id){

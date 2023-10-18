@@ -10,10 +10,13 @@ $pagos=$pagosModel->getAll();
 $con = new Conexion();
 $db = $con->conectar();
 
+ //le mandamos cuantos productos hay en el carrito al boton del carrito
         $query = "SELECT COUNT(*) AS contador FROM carrito";
         $reslts = $db->Execute($query);
         $fila= $reslts->FetchRow();
         $contador = $fila['contador'];
+
+
        
 ?>
 
@@ -52,8 +55,11 @@ $db = $con->conectar();
               <li class="nav-item active">
                 <a class="nav-link" href="./aboutUs.html"><h3>Acerca de nosotros</h3></a>
               </li>
+              <li>
+              <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#ModalInsert" >Insertar</button>
+              </li>
               <li class="nav-item active">
-                <button class="btn btn-outline-dark btnCarrito" onclick="irCarrito()" >Carrito (<span id="cantidadCarrito"><?php echo $contador; ?></span>)</button>
+                <button class="btn btn-outline-dark btnCarrito" onclick="irCarrito()">Carrito (<span id="cantidadCarrito"><?php echo $contador; ?></span>)</button>
               </li>
               
             </ul>
@@ -78,13 +84,13 @@ $db = $con->conectar();
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Título del modal</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar el pago</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
       <form id="frmEdPago" >
-        <input  id="hddid" name="hddid"> <!--Id que no se ve--> 
+        <input type="hidden"  id="hddid" name="hddid"> <!--Id que no se ve--> 
         <div class="form-group">
           <label for="txtpago">Titulo Pago</label>
           <input type="text" id="txtpago" name="txtpago" class="form-control">
@@ -102,7 +108,7 @@ $db = $con->conectar();
           <input type="text" id="txtPeriodo" name="txtPeriodo" class="form-control">
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick=editar()>Editar</button>
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal" onclick=editar()>Editar</button>
       </div>
       </form>
       </div>
@@ -110,7 +116,46 @@ $db = $con->conectar();
   </div>
 </div>
 
-    <div id='resajx'></div>
+<!--MODAL INSERT-->
+<div class="modal fade" id="ModalInsert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Insertar Pago</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+      <form id="frmInPago" >
+        <div class="form-group">
+          <label for="txtpago">Titulo Pago</label>
+          <input type="text" id="txtpago" name="txtpago" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="txtPrecio">Precio </label>
+          <input type="text" id="txtPrecio" name="txtPrecio" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="txtDescripcion">Descripcion</label>
+          <input type="text" id="txtDescripcion" name="txtDescripcion" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="txtPeriodo">Periodo</label>
+          <input type="text" id="txtPeriodo" name="txtPeriodo" class="form-control">
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick=insertar()>Insertar</button>
+      </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+    <div id='resajx' class="alert alert-primary"></div>
 
     <div class="row cartasmas">
         <?php
@@ -132,8 +177,8 @@ $db = $con->conectar();
                 <input type="hidden" name="cantidad" id="cantidad" value="<?php echo 1?>">
              
               <button onclick="agregarCarrito('<?php echo $pagos->fields[0]?>')" class="btn btn-primary" type="button" >Agregar Carrito</button>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="mandar('<?php echo $pagos->fields[0]?>')">Lanzar demo de modal</button>
-              <button type="button" class="btn btn-primary" onclick="eliminar('<?php echo $pagos->fields[0]?>')">Eliminar</button>
+              <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="mandar('<?php echo $pagos->fields[0]?>')">Actualizar</button>
+              <button type="button" class="btn btn-danger" onclick="eliminar('<?php echo $pagos->fields[0]?>')">Eliminar</button>
               </form>
             </div>
           </div>
@@ -174,6 +219,19 @@ $db = $con->conectar();
           $.ajax({ // peticion post de ajax
             type: "POST",
             url: "../controlers/ctrlPagos.php?opc=2",
+            data: formData,
+            success: function(data){ //lo cachamos en data
+              $('#resajx').html(data); //al elemento con ese id le ponemos el contenido que se mande
+            }
+        });
+        
+        }
+
+        function insertar(){
+      var formData= $('#frmInPago').serialize(); //serializamos los datos del from 
+          $.ajax({ // peticion post de ajax
+            type: "POST",
+            url: "../controlers/ctrlPagos.php?opc=4",
             data: formData,
             success: function(data){ //lo cachamos en data
               $('#resajx').html(data); //al elemento con ese id le ponemos el contenido que se mande

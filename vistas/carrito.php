@@ -5,6 +5,13 @@ include_once '../adodb5/adodb.inc.php';
 
 $carritoModel= new CarritoModel();
 $carrito=$carritoModel->getAll();
+$con = new Conexion();
+$db = $con->conectar();
+
+    $query = "SELECT SUM(subtotal) AS suma FROM carrito";
+    $reslts = $db->Execute($query);
+    $fila= $reslts->FetchRow();
+    $contador = $fila['suma'];
 ?>
 <!DOCTYPE html>
 <html lang="en" >
@@ -92,7 +99,7 @@ $carrito=$carritoModel->getAll();
                 <td class="text-center" width="20%"><?php echo $carrito->fields[3]?></td>
                 <td class="text-center" width="10%">
                  <form>
-                 <input type="text" name="idcarro" id="idcarro" value="<?php echo $carrito->fields[0] ?>">  
+                 <input type="hidden" name="idcarro" id="idcarro" value="<?php echo $carrito->fields[0] ?>">  
                 <button type="button" class="btn btn-danger" onclick="eliminar(<?php echo $carrito->fields[0] ?>)">Eliminar</button>
                 </form>
                 </td>
@@ -106,6 +113,9 @@ $carrito=$carritoModel->getAll();
         </div>
     </div>
     </div>
+     
+    <div class="container"><h2>Total: $<b id="total"><?php echo $contador; ?></b></h2></div>
+    
 </main> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>

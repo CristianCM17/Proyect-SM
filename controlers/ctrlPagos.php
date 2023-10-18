@@ -28,9 +28,17 @@ include_once '../adodb5/adodb.inc.php';
                 $pagosModel->editar($idpago,$pago,$precio,$descripcion,$periodo);
                 break;
                 
-                case 3:
+                case 3://eliminar
                     $idpago= $_POST['idpago'];
                     $pagosModel->eliminar($idpago);
+                    break;
+
+                case 4://insertar
+                    $pago= $_POST['txtpago'];
+                    $precio= $_POST['txtPrecio'];
+                    $descripcion=$_POST['txtDescripcion'];
+                    $periodo=$_POST['txtPeriodo'];
+                    $pagosModel->insertar($pago,$precio,$descripcion,$periodo);
                     break;
 
             }

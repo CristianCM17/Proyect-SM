@@ -4,11 +4,15 @@ require_once '../models/conexion.php';
 include_once '../adodb5/adodb.inc.php';
 
     if( isset($_GET['carr']) ){
-         $CarritoModel= new PagosModel();
+         $CarritoModel= new CarritoModel();
 
         switch($_GET['carr']){
             case 1: // INSERT TO DB
                 $CarritoModel->getAll();
+                break;
+            case 2: 
+                $idcarro= $_POST['idcarro'];
+                $CarritoModel->delete($idcarro);
                 break;
 
     }

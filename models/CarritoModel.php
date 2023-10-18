@@ -13,6 +13,12 @@ class CarritoModel{
         //print_r($rs->getRows());
         return $rs;
     }
+
+    function delete($id){
+        $query="DELETE FROM carrito WHERE idpago=".$id;
+        $this->db->Execute($query);
+         $this->getAll();
+    }
 }
 
 

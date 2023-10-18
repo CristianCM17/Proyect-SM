@@ -60,7 +60,11 @@ $carrito=$carritoModel->getAll();
     
             
 
-<main>   
+<main>  
+    <div class="alert alert-dismissible alert-success">
+    <strong id="resAJAX"></strong>
+    </div>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -77,7 +81,7 @@ $carrito=$carritoModel->getAll();
                 <th class="text-center" width="10%" scope="col"></th>      
             </tr>
             </thead>
-            <tbody>  
+            <tbody id="body">  
                 <?php while(!$carrito->EOF){   
                 
                 ?>          
@@ -87,7 +91,10 @@ $carrito=$carritoModel->getAll();
                 <td class="text-center" width="20%"><?php echo $carrito->fields[2]?></td>
                 <td class="text-center" width="20%"><?php echo $carrito->fields[3]?></td>
                 <td class="text-center" width="10%">
-                <button type="button" class="btn btn-danger">Eliminar</button>
+                 <form>
+                 <input type="text" name="idcarro" id="idcarro" value="<?php echo $carrito->fields[0] ?>">  
+                <button type="button" class="btn btn-danger" onclick="eliminar(<?php echo $carrito->fields[0] ?>)">Eliminar</button>
+                </form>
                 </td>
             </tr>
             <?php
@@ -100,6 +107,18 @@ $carrito=$carritoModel->getAll();
     </div>
     </div>
 </main> 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+            function eliminar(id){
+          $.ajax({ // peticion post de ajax
+            type: "POST",
+            url: "../controlers/ctrlCarrito.php?carr=2",
+            data: {idcarro:id},
+            success: function(data){ //lo cachamos en data
+              $('#body').html(data); //al elemento del titulo le ponemos el contenido
+            },
+        })
+        }
+</script>
 </body>
 </html>

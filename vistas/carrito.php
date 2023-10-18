@@ -15,9 +15,9 @@ $carrito=$carritoModel->getAll();
     <link rel="stylesheet" href="../assets/css/styles.css">
     <title>Municipio de Santiago Maravatío</title>
 </head>
-<body class="backcarr">
+<body>
 
-<header class="backcarr">
+<header>
               <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark" >
                     <div class="container-fluid">
                         <a class="navbar-brand" href="../index.html"><img src="../assets/img/logo-SM.png" height="150px"/></a>
@@ -61,7 +61,7 @@ $carrito=$carritoModel->getAll();
             
 
 <main>  
-    <div class="alert alert-dismissible alert-success">
+    <div  class="alert alert-dismissible alert-secondary">
     <strong id="resAJAX"></strong>
     </div>
 
@@ -70,7 +70,7 @@ $carrito=$carritoModel->getAll();
             <div class="col-md-12">
             <h2 style="margin-top: 50px;">Mi carrito</h2>
             <hr/>
-        <table class="table table-hover table-bordered">
+        <table  class="table table-hover table-bordered">
             <thead>
             <tr class="table-primary">
                 
@@ -115,10 +115,11 @@ $carrito=$carritoModel->getAll();
             url: "../controlers/ctrlCarrito.php?carr=2",
             data: {idcarro:id},
             success: function(data){ //lo cachamos en data
-              $('#body').html(data); //al elemento del titulo le ponemos el contenido
+              $('#resAJAX').html(data); //al elemento del titulo le ponemos el contenido
             },
         })
         }
+        
 </script>
 </body>
 </html>

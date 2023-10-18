@@ -17,7 +17,8 @@ class CarritoModel{
     function delete($id){
         $query="DELETE FROM carrito WHERE idpago=".$id;
         $this->db->Execute($query);
-         $this->getAll();
+         //$this->getAll();
+         echo "Producto eliminado de tu carrito";
     }
 }
 

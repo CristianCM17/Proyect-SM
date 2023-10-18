@@ -9,15 +9,28 @@ include_once '../adodb5/adodb.inc.php';
          if( isset($_GET['opc']) ){
             $pagosModel= new PagosModel();
     
-            switch($_GET['opc']){
-                case 1: // INSERT TO DB
+            switch($_GET['opc']){//insertar en carrito
+                case 1: 
                   $idpago= $_POST['idpago'];
                   $cantidad= $_POST['cantidad'];
                   $precio= $_POST['precio'];
                   $pago=$_POST['pago'];
                   
                   $pagosModel->agregarCarrito($idpago,$cantidad,$precio, $pago);
-                 // $mensaje=$idpago." ".$cantidad;
+                
+                    break;
+                 case 2: //actualizar
+                $idpago= $_POST['hddid'];
+                $pago= $_POST['txtpago'];
+                $precio= $_POST['txtPrecio'];
+                $descripcion=$_POST['txtDescripcion'];
+                $periodo=$_POST['txtPeriodo'];
+                $pagosModel->editar($idpago,$pago,$precio,$descripcion,$periodo);
+                break;
+                
+                case 3:
+                    $idpago= $_POST['idpago'];
+                    $pagosModel->eliminar($idpago);
                     break;
 
             }

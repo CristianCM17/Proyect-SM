@@ -71,6 +71,47 @@ $db = $con->conectar();
             </div>
       </header>
 
+
+
+<!--FORM Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Título del modal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+      <form id="frmEdPago" >
+        <input  id="hddid" name="hddid"> <!--Id que no se ve--> 
+        <div class="form-group">
+          <label for="txtpago">Titulo Pago</label>
+          <input type="text" id="txtpago" name="txtpago" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="txtPrecio">Precio </label>
+          <input type="text" id="txtPrecio" name="txtPrecio" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="txtDescripcion">Descripcion</label>
+          <input type="text" id="txtDescripcion" name="txtDescripcion" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="txtPeriodo">Periodo</label>
+          <input type="text" id="txtPeriodo" name="txtPeriodo" class="form-control">
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick=editar()>Editar</button>
+      </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div id='resajx'></div>
+
     <div class="row cartasmas">
         <?php
         
@@ -91,6 +132,8 @@ $db = $con->conectar();
                 <input type="hidden" name="cantidad" id="cantidad" value="<?php echo 1?>">
              
               <button onclick="agregarCarrito('<?php echo $pagos->fields[0]?>')" class="btn btn-primary" type="button" >Agregar Carrito</button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="mandar('<?php echo $pagos->fields[0]?>')">Lanzar demo de modal</button>
+              <button type="button" class="btn btn-primary" onclick="eliminar('<?php echo $pagos->fields[0]?>')">Eliminar</button>
               </form>
             </div>
           </div>
@@ -101,8 +144,14 @@ $db = $con->conectar();
             }
           ?>
       </div>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
+
+        function mandar(id){
+          document.getElementById('hddid').value= id;
+        }
     
     function irCarrito() {
       window.location.href = "./carrito.php";
@@ -117,6 +166,30 @@ $db = $con->conectar();
             success: function(data){ //lo cachamos en data
               $('#cantidadCarrito').html(data); //al elemento con ese id le ponemos el contenido que se mande
             }
+        })
+        }
+
+        function editar(){
+      var formData= $('#frmEdPago').serialize(); //serializamos los datos del from 
+          $.ajax({ // peticion post de ajax
+            type: "POST",
+            url: "../controlers/ctrlPagos.php?opc=2",
+            data: formData,
+            success: function(data){ //lo cachamos en data
+              $('#resajx').html(data); //al elemento con ese id le ponemos el contenido que se mande
+            }
+        });
+        
+        }
+
+        function eliminar(id){
+          $.ajax({ // peticion post de ajax
+            type: "POST",
+            url: "../controlers/ctrlPagos.php?opc=3",
+            data: {idpago:id},
+            success: function(data){ //lo cachamos en data
+              $('#resajx').html(data); //al elemento del titulo le ponemos el contenido
+            },
         })
         }
   

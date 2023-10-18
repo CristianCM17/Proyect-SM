@@ -49,6 +49,24 @@
        
        
     }
+
+      public function editar($idpago,$pago,$precio,$descripcion,$periodo){
+        $pagos= array();  //crea un arreglo
+        $pagos['pago']=$pago;
+        $pagos['precio']=$precio;
+        $pagos['descripcion']=$descripcion;
+        $pagos['periodo']=$periodo;
+
+        $this->db->autoExecute('pagos', $pagos,'UPDATE','idpago = '.'\''.$idpago.'\''); //hace el update
+      }
+
+      function eliminar($id){
+        $query="DELETE FROM pagos WHERE idpago=".$id;
+        $this->db->Execute($query);
+         echo "Producto eliminado";
+    }
+
+
     
   }
 

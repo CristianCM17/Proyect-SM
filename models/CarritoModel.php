@@ -32,6 +32,14 @@ class CarritoModel{
         
     }
 
+     function obtenerTotal(){
+        $query = "SELECT SUM(subtotal) AS suma FROM carrito";
+        $reslts = $this->db->Execute($query);
+        $fila= $reslts->FetchRow();
+        $contador = $fila['suma'];
+        echo "<h2>Total: $<b>$contador</b></h2>";
+    }
+
 }
 
 

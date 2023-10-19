@@ -14,6 +14,7 @@ include_once '../adodb5/adodb.inc.php';
                 $idcarro= $_POST['idcarro'];
                 $CarritoModel->delete($idcarro);
                 obtenerCarrito($CarritoModel);//se muestra la tabla actualizada cuando termine la peticion ajax
+               
                 break;
             case 3: //actualizar
                 $idcarro= $_POST['idcarro'];
@@ -22,8 +23,11 @@ include_once '../adodb5/adodb.inc.php';
                 $precio= $_POST['precio'];
                 $subtotal= $_POST['subtotal'];
                $CarritoModel->ActCantidad($idcarro,$pago,$cantidad,$precio,$subtotal);
-
                obtenerCarrito($CarritoModel); //se muestra la tabla actualizada cuando termine la peticion ajax
+               
+                break;
+            case 4:
+                $CarritoModel->obtenerTotal();
                 break;
 
 
@@ -65,4 +69,6 @@ include_once '../adodb5/adodb.inc.php';
 
         echo $obtenerIteraciones;
     }
+
+
 ?>

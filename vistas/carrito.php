@@ -3,15 +3,9 @@ require_once '../models/CarritoModel.php';
 require_once '../models/conexion.php';
 include_once '../adodb5/adodb.inc.php';
 
-//$carritoModel= new CarritoModel();
-//$carrito=$carritoModel->getAll();
-$con = new Conexion();
-$db = $con->conectar();
 
-    $query = "SELECT SUM(subtotal) AS suma FROM carrito";
-    $reslts = $db->Execute($query);
-    $fila= $reslts->FetchRow();
-    $contador = $fila['suma'];
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" >
@@ -97,7 +91,7 @@ $db = $con->conectar();
     </div>
      
     <div class="container" id="contador">     
-            <h2>Total: $<b id="total"><?php echo $contador; ?></b></h2>    
+                
     </div>
     
 </main> 
@@ -139,7 +133,14 @@ $db = $con->conectar();
             url: "../controlers/ctrlCarrito.php?carr=1",
             success: function(data){ //lo cachamos en data
               $('#body').html(data); //al elemento del TableBody le ponemos las iteraciones del get
-            },
-        })
+            }
+        });
+        $.ajax({ // peticion post de ajax
+            type: "POST",
+            url: "../controlers/ctrlCarrito.php?carr=4",
+            success: function(data){ //lo cachamos en data
+              $('#contador').html(data); //al elemento del TableBody le ponemos las iteraciones del get
+            }
+        });
     });
   </script>

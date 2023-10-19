@@ -94,20 +94,22 @@ $db = $con->conectar();
                 ?>          
             <tr class="table-secondary">               
                 <td class="text-center" width="40%"><?php echo $carrito->fields[4]?></td>
-                <td class="text-center" width="10%"><input type="text" value="<?php echo $carrito->fields[1]?>"></td>
+                <td class="text-center" width="10%">
+                <form id="ocCarrito">
+                 <input type="hidden" name="idcarro" id="idcarro" value="<?php echo $carrito->fields[0] ?>">  
+                 <input type="hidden" name="pago" id="pago" value="<?php echo $carrito->fields[4] ?>"> 
+                 <input type="number" name="cantidad" id="cantidad" value="<?php echo $carrito->fields[1] ?>"> 
+                 <input type="hidden" name="precio" id="precio" value="<?php echo $carrito->fields[2] ?>"> 
+                 <input type="hidden" name="subtotal" id="subtotal" value="<?php echo $carrito->fields[3] ?>"> 
+                 </form>
+                </td>
                 <td class="text-center" width="20%"><?php echo $carrito->fields[2]?></td>
                 <td class="text-center" width="20%"><?php echo $carrito->fields[3]?></td>
                 <td class="text-center" width="10%">
-                 <form id="ocCarrito">
-                 <input type="hidden" name="idcarro" id="idcarro" value="<?php echo $carrito->fields[0] ?>">  
-                 <input type="hidden" name="pago" id="pago" value="<?php echo $carrito->fields[4] ?>"> 
-                 <input type="hidden" name="cantidad" id="cantidad" value="<?php echo $carrito->fields[1] ?>"> 
-                 <input type="hidden" name="precio" id="precio" value="<?php echo $carrito->fields[2] ?>"> 
-                 <input type="hidden" name="subtotal" id="subtotal" value="<?php echo $carrito->fields[3] ?>"> 
-                 
+
                 <button type="button" class="btn btn-danger" onclick="eliminar(<?php echo $carrito->fields[0] ?>)">Eliminar</button>
                 <button style="margin-top: 5px;" type="button" class="btn btn-primary" onclick="actualizarCant()">Actualizar</button>
-                </form>
+                
                 </td>
             </tr>
             <?php
@@ -150,9 +152,8 @@ $db = $con->conectar();
             }
         });
         
-        }
-        
-        
+        }       
 </script>
+
 </body>
 </html>

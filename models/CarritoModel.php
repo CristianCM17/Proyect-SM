@@ -28,8 +28,8 @@ class CarritoModel{
         $pagos['precio']=$precio;
         $pagos['subtotal']=$precio*$cantidad;
 
-        $this->db->autoExecute('carrito', $pagos,'UPDATE','idcarro = '.'\''.$idcarro.'\''); //hace el update
-        echo "se actualizo la cantidad";
+        $this->db->autoExecute('carrito', $pagos,'UPDATE','idpago = '.'\''.$idcarro.'\''); //hace el update
+        echo "cantidad actualizada";
 
     }
 

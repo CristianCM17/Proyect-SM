@@ -7,7 +7,7 @@ include_once '../adodb5/adodb.inc.php';
          $CarritoModel= new CarritoModel();
 
         switch($_GET['carr']){
-            case 1: // INSERT TO DB
+            case 1: // mostrar
                 $CarritoModel->getAll();
                 break;
             case 2: 

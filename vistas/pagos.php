@@ -5,8 +5,7 @@ include_once '../adodb5/adodb.inc.php';
 
 
   
-$pagosModel= new PagosModel();
-$pagos=$pagosModel->getAll();
+
 $con = new Conexion();
 $db = $con->conectar();
 
@@ -157,38 +156,12 @@ $db = $con->conectar();
 
     <div id='resajx' class="alert alert-primary"></div>
 
-    <div class="row cartasmas">
-        <?php
+    <div class="row cartasmas" id="carta" >
+
         
-        while(!$pagos->EOF){
 
-        ?>
-        <div class="col-sm-6 cartas">
-          <div class="card">
-            <div class="card-body cartasbody">
-              <h2 class="card-title"><?php echo $pagos->fields[1]?></h5>
-              <h3 class="card-subtitle mb-2 text-muted">$<?php echo $pagos->fields[2]?></h6>
-              <p class="card-text"><?php echo $pagos->fields[3].' '.$pagos->fields[4]?></p>
-
-              <form id="<?php echo $pagos->fields[0]?>">
-                <input type="hidden" name="idpago" id="idpago" value="<?php echo $pagos->fields[0]?>">
-                <input type="hidden" name="pago" id="pago" value="<?php echo $pagos->fields[1]?>">
-                <input type="hidden" name="precio" id="precio" value="<?php echo $pagos->fields[2]?>">
-                <input type="hidden" name="cantidad" id="cantidad" value="<?php echo 1?>">
-             
-              <button onclick="agregarCarrito('<?php echo $pagos->fields[0]?>')" class="btn btn-primary" type="button" >Agregar Carrito</button>
-              <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="mandar('<?php echo $pagos->fields[0]?>')">Actualizar</button>
-              <button type="button" class="btn btn-danger" onclick="eliminar('<?php echo $pagos->fields[0]?>')">Eliminar</button>
-              </form>
-            </div>
-          </div>
-        </div>
-          <?php
-              
-              $pagos->MoveNext();
-            }
-          ?>
       </div>
+
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -221,7 +194,7 @@ $db = $con->conectar();
             url: "../controlers/ctrlPagos.php?opc=2",
             data: formData,
             success: function(data){ //lo cachamos en data
-              $('#resajx').html(data); //al elemento con ese id le ponemos el contenido que se mande
+              $('#carta').html(data); //al elemento con ese id le ponemos el contenido que se mande
             }
         });
         
@@ -234,7 +207,7 @@ $db = $con->conectar();
             url: "../controlers/ctrlPagos.php?opc=4",
             data: formData,
             success: function(data){ //lo cachamos en data
-              $('#resajx').html(data); //al elemento con ese id le ponemos el contenido que se mande
+              $('#carta').html(data); //al elemento con ese id le ponemos el contenido que se mande
             }
         });
         
@@ -246,7 +219,7 @@ $db = $con->conectar();
             url: "../controlers/ctrlPagos.php?opc=3",
             data: {idpago:id},
             success: function(data){ //lo cachamos en data
-              $('#resajx').html(data); //al elemento del titulo le ponemos el contenido
+              $('#carta').html(data); //al elemento del titulo le ponemos el contenido
             },
         })
         }
@@ -255,3 +228,15 @@ $db = $con->conectar();
     
 </body>
 </html>
+<script>
+  //hacer get
+    $(document).ready(function() {
+      $.ajax({ // peticion post de ajax
+            type: "POST",
+            url: "../controlers/ctrlPagos.php?opc=5",
+            success: function(data){ //lo cachamos en data
+              $('#carta').html(data); //al elemento del TableBody le ponemos las iteraciones del get
+            },
+        })
+    });
+  </script>

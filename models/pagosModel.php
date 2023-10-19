@@ -70,13 +70,12 @@
         $pagos['periodo']=$periodo;
 
         $this->db->autoExecute('pagos', $pagos,'INSERT'); //hace el update
-        echo "insertado correctamente";
+       
       }
 
       function eliminar($id){
         $query="DELETE FROM pagos WHERE idpago=".$id;
         $this->db->Execute($query);
-         echo "Producto eliminado";
     }
 
 

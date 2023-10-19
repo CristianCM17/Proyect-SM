@@ -3,8 +3,8 @@ require_once '../models/CarritoModel.php';
 require_once '../models/conexion.php';
 include_once '../adodb5/adodb.inc.php';
 
-$carritoModel= new CarritoModel();
-$carrito=$carritoModel->getAll();
+//$carritoModel= new CarritoModel();
+//$carrito=$carritoModel->getAll();
 $con = new Conexion();
 $db = $con->conectar();
 
@@ -89,40 +89,14 @@ $db = $con->conectar();
             </tr>
             </thead>
             <tbody id="body">  
-                <?php while(!$carrito->EOF){   
-                
-                ?>          
-            <tr class="table-secondary">               
-                <td class="text-center" width="40%"><?php echo $carrito->fields[4]?></td>
-                <td class="text-center" width="10%">
-                <form id="ocCarrito">
-                 <input type="hidden" name="idcarro" id="idcarro" value="<?php echo $carrito->fields[0] ?>">  
-                 <input type="hidden" name="pago" id="pago" value="<?php echo $carrito->fields[4] ?>"> 
-                 <input type="number" name="cantidad" id="cantidad" value="<?php echo $carrito->fields[1] ?>"> 
-                 <input type="hidden" name="precio" id="precio" value="<?php echo $carrito->fields[2] ?>"> 
-                 <input type="hidden" name="subtotal" id="subtotal" value="<?php echo $carrito->fields[3] ?>"> 
-                 </form>
-                </td>
-                <td class="text-center" width="20%"><?php echo $carrito->fields[2]?></td>
-                <td class="text-center" width="20%"><?php echo $carrito->fields[3]?></td>
-                <td class="text-center" width="10%">
 
-                <button type="button" class="btn btn-danger" onclick="eliminar(<?php echo $carrito->fields[0] ?>)">Eliminar</button>
-                <button style="margin-top: 5px;" type="button" class="btn btn-primary" onclick="actualizarCant()">Actualizar</button>
-                
-                </td>
-            </tr>
-            <?php
-                 $carrito->MoveNext();
-            }
-            ?>
               </tbody>
           </table>
         </div>
     </div>
     </div>
      
-    <div class="container">     
+    <div class="container" id="contador">     
             <h2>Total: $<b id="total"><?php echo $contador; ?></b></h2>    
     </div>
     
@@ -135,7 +109,7 @@ $db = $con->conectar();
             url: "../controlers/ctrlCarrito.php?carr=2",
             data: {idcarro:id},
             success: function(data){ //lo cachamos en data
-              $('#resAJAX').html(data); //al elemento del titulo le ponemos el contenido
+              $('#body').html(data); //al elemento del titulo le ponemos el contenido
             },
         })
         }
@@ -148,7 +122,7 @@ $db = $con->conectar();
             url: "../controlers/ctrlCarrito.php?carr=3",
             data: formData,
             success: function(data){ //lo cachamos en data
-              $('#resAJAX').html(data); //al elemento con ese id le ponemos el contenido que se mande
+              $('#body').html(data); //al elemento con ese id le ponemos el contenido que se mande
             }
         });
         
@@ -157,3 +131,15 @@ $db = $con->conectar();
 
 </body>
 </html>
+<script>
+  //hacer get
+    $(document).ready(function() {
+      $.ajax({ // peticion post de ajax
+            type: "POST",
+            url: "../controlers/ctrlCarrito.php?carr=1",
+            success: function(data){ //lo cachamos en data
+              $('#body').html(data); //al elemento del TableBody le ponemos las iteraciones del get
+            },
+        })
+    });
+  </script>

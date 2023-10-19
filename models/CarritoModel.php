@@ -18,7 +18,7 @@ class CarritoModel{
         $query="DELETE FROM carrito WHERE idpago=".$id;
         $this->db->Execute($query);
          //$this->getAll();
-         echo "Producto eliminado de tu carrito";
+        
     }
 
     function ActCantidad($idcarro,$pago,$cantidad,$precio,$subtotal){
@@ -29,8 +29,7 @@ class CarritoModel{
         $pagos['subtotal']=$precio*$cantidad;
 
         $this->db->autoExecute('carrito', $pagos,'UPDATE','idpago = '.'\''.$idcarro.'\''); //hace el update
-        echo "cantidad actualizada";
-
+        
     }
 
 }

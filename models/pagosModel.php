@@ -14,7 +14,7 @@
       return $rs;
     }
 
-    public function agregarCarrito($idpago,$cantidad,$precio,$pago){
+  /*  public function agregarCarrito($idpago,$cantidad,$precio,$pago){
 
       //contamos cuantos pagos estan con el mismo id
         $checkQuery = "SELECT COUNT(*) AS count FROM carrito WHERE idpago = $idpago";
@@ -49,7 +49,7 @@
     
        
        
-    }
+    }*/
 
       public function editar($idpago,$pago,$precio,$descripcion,$periodo){
         $pagos= array();  //crea un arreglo

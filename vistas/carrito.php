@@ -1,12 +1,4 @@
-<?php
-require_once '../models/CarritoModel.php';
-require_once '../models/conexion.php';
-include_once '../adodb5/adodb.inc.php';
 
-
-
-
-?>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -42,7 +34,7 @@ include_once '../adodb5/adodb.inc.php';
                             <a class="nav-link" href="./aboutUs.html"><h3>Acerca de nosotros</h3></a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="../vistas/pagos.php"><h3>Pagos</h3></a>
+                            <a class="nav-link" href="../vistas/pagosCliente.php"><h3>Pagos</h3></a>
                             </li>
                         </ul>
                         <form class="d-flex">
@@ -66,29 +58,11 @@ include_once '../adodb5/adodb.inc.php';
     <strong id="resAJAX"></strong>
     </div>
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-            <h2 style="margin-top: 50px;">Mi carrito</h2>
-            <hr/>
-        <table  class="table table-hover table-bordered">
-            <thead>
-            <tr class="table-primary">
-                
-                <th class="text-center" width="40%" scope="col">Descripcion</th>
-                <th class="text-center" width="15%" scope="col">Cantidad</th>
-                <th class="text-center" width="20%" scope="col">Precio</th>  
-                <th class="text-center" width="20%" scope="col">Subtotal</th>  
-                <th class="text-center" width="10%" scope="col"></th>      
-            </tr>
-            </thead>
-            <tbody id="body">  
+    <div class="container" id="tablatoda">
+       
+    </div>
 
-              </tbody>
-          </table>
-        </div>
-    </div>
-    </div>
+    
      
     <div class="container" id="contador">     
                 
@@ -103,24 +77,24 @@ include_once '../adodb5/adodb.inc.php';
             url: "../controlers/ctrlCarrito.php?carr=2",
             data: {idcarro:id},
             success: function(data){ //lo cachamos en data
-              $('#body').html(data); //al elemento del titulo le ponemos el contenido
+              $('#tablatoda').html(data); //al elemento del titulo le ponemos el contenido
             },
         })
         }
 
        
-            function actualizarCant(){
-      var formData= $('#ocCarrito').serialize(); //serializamos los datos del from 
+           function actualizarCant(){
+           var formData= $('#ocCarrito').serialize(); //serializamos los datos del from 
           $.ajax({ // peticion post de ajax
             type: "POST",
             url: "../controlers/ctrlCarrito.php?carr=3",
             data: formData,
             success: function(data){ //lo cachamos en data
-              $('#body').html(data); //al elemento con ese id le ponemos el contenido que se mande
+              $('#contador').html(data); //al elemento con ese id le ponemos el contenido que se mande
             }
         });
         
-        }       
+        }    
 </script>
 
 </body>
@@ -132,15 +106,15 @@ include_once '../adodb5/adodb.inc.php';
             type: "POST",
             url: "../controlers/ctrlCarrito.php?carr=1",
             success: function(data){ //lo cachamos en data
-              $('#body').html(data); //al elemento del TableBody le ponemos las iteraciones del get
+              $('#tablatoda').html(data); //al elemento del TableBody le ponemos las iteraciones del get
             }
         });
-        $.ajax({ // peticion post de ajax
+       /* $.ajax({ // peticion post de ajax
             type: "POST",
             url: "../controlers/ctrlCarrito.php?carr=4",
             success: function(data){ //lo cachamos en data
               $('#contador').html(data); //al elemento del TableBody le ponemos las iteraciones del get
             }
-        });
+        });*/
     });
   </script>

@@ -1,23 +1,3 @@
-<?php
-require_once '../models/pagosModel.php';
-require_once '../models/conexion.php';
-include_once '../adodb5/adodb.inc.php';
-
-
-  
-
-$con = new Conexion();
-$db = $con->conectar();
-
- //le mandamos cuantos productos hay en el carrito al boton del carrito
-        $query = "SELECT COUNT(*) AS contador FROM carrito";
-        $reslts = $db->Execute($query);
-        $fila= $reslts->FetchRow();
-        $contador = $fila['contador'];
-
-
-       
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,9 +37,7 @@ $db = $con->conectar();
               <li>
               <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#ModalInsert" >Insertar</button>
               </li>
-              <li class="nav-item active">
-                <button class="btn btn-outline-dark btnCarrito" onclick="irCarrito()">Carrito (<span id="cantidadCarrito"><?php echo $contador; ?></span>)</button>
-              </li>
+
               
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -175,7 +153,7 @@ $db = $con->conectar();
       window.location.href = "./carrito.php";
     }
 
-    function agregarCarrito(formId){
+  /*  function agregarCarrito(formId){
       var formData= $('#' + formId).serialize(); //serializamos los datos del from dandole un id dinamico al formulario 
           $.ajax({ // peticion post de ajax
             type: "POST",
@@ -185,7 +163,7 @@ $db = $con->conectar();
               $('#cantidadCarrito').html(data); //al elemento con ese id le ponemos el contenido que se mande
             }
         })
-        }
+        }*/
 
         function editar(){
       var formData= $('#frmEdPago').serialize(); //serializamos los datos del from 

@@ -57,6 +57,7 @@ session_start();
           //hacer el mapeo de la tabla carrito
         }else{
         $obtenerIteraciones='';
+        //el total
         $total=0;
        // $carrito=$CarritoModel->getAll();
         //hacer las iteraciones necesarias para mapear lo de la base de datos e incrustarlo en el html
@@ -66,7 +67,7 @@ session_start();
            '<tr class="table-secondary">               
             <td class="text-center" width="40%">'.$servicios['pago'].'</td>
             <td class="text-center" width="10%">
-            <form id="ocCarrito">
+            <form id="oc'.$servicios['idpago'].'">
              <input type="hidden" name="idcarro" id="idcarro" value="'.$servicios['idpago'].'">  
              <input type="hidden" name="pago" id="pago" value="'.$servicios['pago'].'"> 
              <input type="number" name="cantidad" id="cantidad" value="'.$servicios['cantidad'].'"> 
@@ -81,7 +82,7 @@ session_start();
             <td class="text-center" width="10%">
 
             <button type="button" class="btn btn-danger" onclick="eliminar('.$servicios['idpago'].')">Eliminar</button>
-            <button style="margin-top: 5px;" type="button" class="btn btn-primary" onclick="actualizarCant()">Actualizar</button>
+            <button style="margin-top: 5px;" type="button" class="btn btn-primary" onclick="actualizarCant('.$servicios['idpago'].')">Actualizar</button>
             
             </td>
         </tr>';

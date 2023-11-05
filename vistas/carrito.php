@@ -83,14 +83,14 @@
         }
 
        
-           function actualizarCant(){
-           var formData= $('#ocCarrito').serialize(); //serializamos los datos del from 
+           function actualizarCant(formID){
+           var formData= $('#' +'oc'+formID).serialize(); //serializamos los datos del from 
           $.ajax({ // peticion post de ajax
             type: "POST",
             url: "../controlers/ctrlCarrito.php?carr=3",
             data: formData,
             success: function(data){ //lo cachamos en data
-              $('#contador').html(data); //al elemento con ese id le ponemos el contenido que se mande
+              $('#tablatoda').html(data); //al elemento con ese id le ponemos el contenido que se mande
             }
         });
         

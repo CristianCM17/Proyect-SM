@@ -1,9 +1,29 @@
+<?php
+
+
+if(isset($_POST['registrar'])){
+    $secret ="6LdLcAgpAAAAAFZwxYUkr47-gW8G6zTlpW3S6QLp";
+    $response= $_POST['g-recaptcha-response'];
+    $remoteip=$_SERVER['REMOTE_ADDR'];
+    $url= "https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip";
+    $data = file_get_contents($url);
+    $row=json_decode($data, true);
+
+   // echo $row['success'];
+
+    if ($row['success'] == "true") {
+     echo "<script>alert('parece que no eres un robot');</script>";
+    }else echo "<script>alert('parece que si eres un robot')</script>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <title>Municipio de Santiago Maravatío</title>
 </head>
 <body>
@@ -18,7 +38,7 @@
       
                       <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registro</p>
       
-                      <form class="mx-1 mx-md-4">
+                      <form class="mx-1 mx-md-4" method="post">
       
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="bi bi-person-fill fa-lg me-3 fa-fw"></i>
@@ -32,7 +52,7 @@
                           <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
                             <input type="email" id="form3Example3c" class="form-control"   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Ingrese una dirección de correo electrónico válida" />
-                            <label class="form-label" for="form3Example3c"></label>Correo electrónico</label>
+                            <label class="form-label" for="form3Example3c">Correo electrónico</label>
                           </div>
                         </div>
       
@@ -44,25 +64,37 @@
                           </div>
                         </div>
       
-                        <div class="d-flex flex-row align-items-center mb-4">
+                     <!--   <div class="d-flex flex-row align-items-center mb-4">
                           <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
                             <input type="password" id="form3Example4cd" class="form-control" />
                             <label class="form-label" for="form3Example4cd">Repite tu contraseña</label>
                           </div>
-                        </div>
+                        </div>-->
 
                         <div class="d-flex flex-row align-items-center mb-4">
                             <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                             <div class="form-outline flex-fill mb-0">
                               <input type="text" id="form3Example4cd" class="form-control" pattern="[A-Za-z0-9\s]+" title="Ingrese una dirección válida (solo letras, números y espacios)" />
-                              <label class="form-label" for="form3Example4cd" >Dirección</label>
+                              <label class="form-label" for="form3Example4cd" >Latitud</label>
                             </div>
                           </div>
+
+                          <div class="d-flex flex-row align-items-center mb-4">
+                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                            <div class="form-outline flex-fill mb-0">
+                              <input type="text" id="form3Example4cd" class="form-control" pattern="[A-Za-z0-9\s]+" title="Ingrese una dirección válida (solo letras, números y espacios)" />
+                              <label class="form-label" for="form3Example4cd" >Longitud</label>
+                            </div>
+                          </div>
+
+                          <div class="d-flex flex-row align-items-center mb-4"">
+                          <div class="g-recaptcha" data-sitekey="6LdLcAgpAAAAAAMNnV4Yy1KnBFv0zjiDugRPHqcI"></div>
+                        </div>
       
       
                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          <button type="submit" class="btn btn-dark btn-lg btn-block">Registrar</button>
+                          <button type="submit" class="btn btn-dark btn-lg btn-block" name="registrar">Registrar</button>
                         </div>
       
                       </form>
@@ -81,5 +113,6 @@
           </div>
         </div>
       </section>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

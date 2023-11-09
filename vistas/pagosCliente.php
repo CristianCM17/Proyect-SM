@@ -26,7 +26,7 @@ session_start();
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="../index.html"><h3>Inicio</h3><span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="../index.html"><h3>Inicio</h3></a>
               </li>
               <li class="nav-item active">
                   <a class="nav-link" href="../index.html#servicios"><h3>Servicios</h3></a>
@@ -38,8 +38,12 @@ session_start();
                 <a class="nav-link" href="./aboutUs.html"><h3>Acerca de nosotros</h3></a>
               </li>
               <li class="nav-item active">
-                <button class="btn btn-outline-dark btnCarrito" onclick="irCarrito()">Carrito (<span id="cantidadCarrito"><?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']); ?></span>)</button>
+                <form action="../controlers/alogin.php" method="post">
+                <button class="btn btn-outline-dark btnCarrito" type="submit" name="ircarrito">Carrito (<span id="cantidadCarrito"><?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']); ?></span>)</button>
+                </form>
               </li>
+                
+                
               
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -71,9 +75,9 @@ session_start();
 <script>
 
     
-    function irCarrito() {
+   /* function irCarrito() {
       window.location.href = "./carrito.php";
-    }
+    }*/
 
     function agregarCarrito(formId){
       var formData= $('#' + formId).serialize(); //serializamos los datos del from dandole un id dinamico al formulario 

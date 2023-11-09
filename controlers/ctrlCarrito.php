@@ -3,6 +3,9 @@ require_once '../models/CarritoModel.php';
 require_once '../models/conexion.php';
 include_once '../adodb5/adodb.inc.php';
 session_start();
+
+
+
     if( isset($_GET['carr']) ){
          $CarritoModel= new CarritoModel();
 

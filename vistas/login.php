@@ -1,20 +1,4 @@
-<?php 
 
-if(isset($_POST['acceder'])){
-    $secret ="6LdLcAgpAAAAAFZwxYUkr47-gW8G6zTlpW3S6QLp";
-    $response= $_POST['g-recaptcha-response'];
-    $remoteip=$_SERVER['REMOTE_ADDR'];
-    $url= "https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip";
-    $data = file_get_contents($url);
-    $row=json_decode($data, true);
-
-   // echo $row['success'];
-
-    if ($row['success'] == "true") {
-     echo "<script>alert('parece que no eres un robot');</script>";
-    }else echo "<script>alert('parece que si eres un robot')</script>";
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +6,7 @@ if(isset($_POST['acceder'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <title>Municipio de Santiago Maravatío</title>
 </head>
 <body>
@@ -60,16 +43,14 @@ if(isset($_POST['acceder'])){
                           <label class="form-label" for="form2Example27">Contraseña</label>
                         </div>
 
-                        <div class="form-outline mb-4">
-                          <div class="g-recaptcha" data-sitekey="6LdLcAgpAAAAAAMNnV4Yy1KnBFv0zjiDugRPHqcI"></div>
-                        </div>
+
       
                         <div class="pt-1 mb-4">
                           <button class="btn btn-dark btn-lg btn-block" type="submit" name="acceder">Acceder</button>
                         </div>
       
                        <!-- <a class="small text-muted" href="#!">Olvidaste tu contraseña?</a>
-                       --> <p class="mb-5 pb-lg-2" style="color: #393f81;">No tienes cuenta? <a href="#!"
+                       --> <p class="mb-5 pb-lg-2" style="color: #393f81;">No tienes cuenta? <a href="./signup.php"
                             style="color: #393f81;">Registrate aquí</a></p>
                       </form>
       
@@ -81,6 +62,6 @@ if(isset($_POST['acceder'])){
           </div>
         </div>
       </section>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      
 </body>
 </html>

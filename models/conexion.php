@@ -4,8 +4,8 @@ class conexion{
 
     private $DBType = 'mysqli';
     private $DBServer = 'localhost'; // server name or IP address
-    private $DBUser = 'empleado';
-    private $DBPass = '1234';
+    private $DBUser = 'root';
+    private $DBPass = '';
     private $DBName = 'sm';
     
     public function __construct(){}

@@ -1,21 +1,4 @@
-<?php
 
-
-if(isset($_POST['registrar'])){
-    $secret ="6LdLcAgpAAAAAFZwxYUkr47-gW8G6zTlpW3S6QLp";
-    $response= $_POST['g-recaptcha-response'];
-    $remoteip=$_SERVER['REMOTE_ADDR'];
-    $url= "https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip";
-    $data = file_get_contents($url);
-    $row=json_decode($data, true);
-
-   // echo $row['success'];
-
-    if ($row['success'] == "true") {
-     echo "<script>alert('parece que no eres un robot');</script>";
-    }else echo "<script>alert('parece que si eres un robot')</script>";
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,12 +21,12 @@ if(isset($_POST['registrar'])){
       
                       <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registro</p>
       
-                      <form class="mx-1 mx-md-4" method="post">
-      
+                      <form class="mx-1 mx-md-4" id="frmRegistro" method="POST" action="../controlers/ctrlUsario.php?action=1">
+                      <div id="resajx" class="alert alert-primary" style="display: none"></div>
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="bi bi-person-fill fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <input type="text" id="form3Example1c" class="form-control" pattern="[A-Za-z]+" title="Ingrese un nombre válido (solo letras)" />
+                            <input type="text" name="nombre" class="form-control" pattern="[A-Za-z]+" title="Ingrese un nombre válido (solo letras)" />
                             <label class="form-label" for="form3Example1c" >Nombre</label>
                           </div>
                         </div>
@@ -51,7 +34,7 @@ if(isset($_POST['registrar'])){
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <input type="email" id="form3Example3c" class="form-control"   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Ingrese una dirección de correo electrónico válida" />
+                            <input type="email" name="email" class="form-control"   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Ingrese una dirección de correo electrónico válida" />
                             <label class="form-label" for="form3Example3c">Correo electrónico</label>
                           </div>
                         </div>
@@ -59,7 +42,7 @@ if(isset($_POST['registrar'])){
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <input type="password" id="form3Example4c" class="form-control" pattern="^(?=.*[A-Z])(?=.*[0-9]).{8,}$" title="La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número" />
+                            <input type="password" name="contrasena" class="form-control" />
                             <label class="form-label" for="form3Example4c">Contraseña</label>
                           </div>
                         </div>
@@ -75,7 +58,7 @@ if(isset($_POST['registrar'])){
                         <div class="d-flex flex-row align-items-center mb-4">
                             <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                             <div class="form-outline flex-fill mb-0">
-                              <input type="text" id="form3Example4cd" class="form-control" pattern="[A-Za-z0-9\s]+" title="Ingrese una dirección válida (solo letras, números y espacios)" />
+                              <input type="number" name="latitud" class="form-control"/>
                               <label class="form-label" for="form3Example4cd" >Latitud</label>
                             </div>
                           </div>
@@ -83,7 +66,7 @@ if(isset($_POST['registrar'])){
                           <div class="d-flex flex-row align-items-center mb-4">
                             <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                             <div class="form-outline flex-fill mb-0">
-                              <input type="text" id="form3Example4cd" class="form-control" pattern="[A-Za-z0-9\s]+" title="Ingrese una dirección válida (solo letras, números y espacios)" />
+                              <input type="number" name="longitud" class="form-control"  />
                               <label class="form-label" for="form3Example4cd" >Longitud</label>
                             </div>
                           </div>
@@ -94,7 +77,7 @@ if(isset($_POST['registrar'])){
       
       
                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          <button type="submit" class="btn btn-dark btn-lg btn-block" name="registrar">Registrar</button>
+                          <button type="submit" class="btn btn-dark btn-lg btn-block">Registrar</button>
                         </div>
       
                       </form>
@@ -113,6 +96,21 @@ if(isset($_POST['registrar'])){
           </div>
         </div>
       </section>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <script>      
+   /*   function insertar(){
+          var formData= $('#frmRegistro').serialize(); //serializamos los datos del from 
+          $('#resajx').show();
+          $.ajax({ // peticion post de ajax
+            type: "POST",
+            url: "../controlers/ctrlUsario.php?action=1",
+            data: formData,
+            success: function(data){ //lo cachamos en data
+             $('#resajx').html(data); //al elemento con ese id le ponemos el contenido que se mande
+            }
+        });
+        
+        }*/</script>
 </body>
 </html>

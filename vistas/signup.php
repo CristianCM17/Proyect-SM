@@ -22,7 +22,16 @@
                       <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registro</p>
       
                       <form class="mx-1 mx-md-4" id="frmRegistro" method="POST" action="../controlers/ctrlUsario.php?action=1">
-                      <div id="resajx" class="alert alert-primary" style="display: none"></div>
+                     <?php
+                          if (isset($_GET['err']) ) {
+                            if ($_GET['err'] == 1) {
+                              echo '<div class="alert alert-primary">Llena todos los campos</div>';
+                            }elseif ($_GET['err'] == 2) {
+                              echo '<div class="alert alert-primary">Ya existe ese correo registrado</div>';
+                            }
+                           
+                          } 
+                     ?> 
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="bi bi-person-fill fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
@@ -42,7 +51,7 @@
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <input type="password" name="contrasena" class="form-control" />
+                            <input type="password" name="contrasena" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}" title="La contraseña debe tener al menos 8 caracteres, una letra minúscula, una letra mayúscula, un número y un carácter especial"/>
                             <label class="form-label" for="form3Example4c">Contraseña</label>
                           </div>
                         </div>

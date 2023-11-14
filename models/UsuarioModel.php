@@ -19,6 +19,20 @@ class UsuarioModel{
       $this->db->autoExecute('usuario', $usuario,'INSERT'); //hace el update
      
     }
+
+    public function validarEmail($email){
+      //contar cuantos emails hay pareceidos al que quiere insertar
+      $query = "SELECT COUNT(email) AS email FROM usuario where email = '$email'";
+      $reslts = $this->db->Execute($query);
+      $fila= $reslts->FetchRow();
+      $contador = $fila['email'];
+      //validar si hay o no hay
+      if ($contador==1) {
+          return true;
+      }else {
+        return false;
+      }
+    }
   }
 
 ?>

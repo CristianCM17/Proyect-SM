@@ -28,7 +28,6 @@ if (isset($_SESSION['login'])) {
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
                             <a class="nav-link active" href="../index.html"><h3>Inicio</h3>
-                                <span class="visually-hidden">(current)</span>
                             </a>
                             </li>
                             <li class="nav-item">
@@ -43,6 +42,11 @@ if (isset($_SESSION['login'])) {
                             <li class="nav-item">
                             <a class="nav-link" href="../vistas/pagosCliente.php"><h3>Pagos</h3></a>
                             </li>
+
+                            <li class="nav-item">
+                            <button class="nav-link" onclick="cerrarSesion()"><h3>Cerrar sesión</h3></button>
+                            </li>
+
                         </ul>
                         <form class="d-flex">
                             <input class="form-control me-sm-2" type="search" placeholder="Search" wfd-id="id0">
@@ -124,4 +128,15 @@ if (isset($_SESSION['login'])) {
             }
         });*/
     });
+
+    function cerrarSesion(){
+      $.ajax({ // peticion post de ajax
+            type: "POST",
+            url: "../controlers/ctrlCarrito.php?carr=4",
+            success: function(response){  
+                    location.reload(); //recargamos la pagina
+                    alert("Sesión cerrada exitosamente");
+            }
+        });
+    }
   </script>

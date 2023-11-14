@@ -41,7 +41,7 @@ session_start();
             
                 break;
             case 4:
-             
+                    session_destroy();
                 break;
 
 

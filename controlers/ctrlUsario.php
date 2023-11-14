@@ -41,6 +41,7 @@ if (isset($_GET['action'])){
                     $hashContr= password_hash($email,PASSWORD_DEFAULT); //encriptar contrasena
                     $usuario->insertar($nombre,$email,$hashContr,$latitud,$longitud);
                     $_SESSION['login']= $email;
+                    $usuario->insertarUsRol($email);
                     header("Location: ../vistas/carrito.php");
                     }
             }

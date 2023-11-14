@@ -35,7 +35,7 @@
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="bi bi-person-fill fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <input type="text" name="nombre" class="form-control" pattern="[A-Za-z]+" title="Ingrese un nombre válido (solo letras)" />
+                            <input type="text" name="nombre" class="form-control"/>
                             <label class="form-label" for="form3Example1c" >Nombre</label>
                           </div>
                         </div>

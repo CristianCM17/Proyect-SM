@@ -1,4 +1,11 @@
 
+<?php
+session_start();
+if (isset($_SESSION['login'])) {
+     header('Location: ./carrito.php');
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,10 +30,11 @@
                   <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
       
-                      <form method="post">
-      
+                      <form id="loginPrin">
+
+                      <div id='resajax' class="container alert alert-primary" style="display:none;"></div>
+
                         <div class="d-flex align-items-center mb-3 pb-1">
-                        
                          <img src="../assets/img/logo-SM.png" height="150px">
                           <span class="h1 fw-bold mb-0">Iniciar sesión</span>
                         </div>
@@ -34,19 +42,19 @@
                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Acceder a tu cuenta</h5>
       
                         <div class="form-outline mb-4">
-                          <input type="email" id="form2Example17" class="form-control form-control-lg" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Ingrese una dirección de correo electrónico válida" />
+                          <input type="text" name="email"  class="form-control form-control-lg" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Ingrese una dirección de correo electrónico válida" />
                           <label class="form-label" for="form2Example17">Correo electrónico</label>
                         </div>
       
                         <div class="form-outline mb-4">
-                          <input type="password" id="form2Example27" class="form-control form-control-lg" pattern=".{8,}" title="Debe contener al menos 8 caracteres" />
+                          <input type="password" name="contrasena"  class="form-control form-control-lg" pattern=".{8,}" title="Debe contener al menos 8 caracteres" />
                           <label class="form-label" for="form2Example27">Contraseña</label>
                         </div>
 
 
       
                         <div class="pt-1 mb-4">
-                          <button class="btn btn-dark btn-lg btn-block" type="submit" name="acceder">Acceder</button>
+                          <button type="button" class="btn btn-dark btn-lg btn-block"onclick="acceder()">Acceder</button>
                         </div>
       
                        <!-- <a class="small text-muted" href="#!">Olvidaste tu contraseña?</a>
@@ -62,6 +70,25 @@
           </div>
         </div>
       </section>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      <script>
+        function acceder() {
+          var formData= $('#loginPrin').serialize();
+          $("#resajax").show();
+          $.ajax({
+            type: "POST",
+            url: "../controlers/ctrlLogin.php?log=1",
+            data: formData ,
+            success: function(data){
+               if (data==1) {
+                window.location.href="../vistas/carrito.php";
+                }else  $('#resajax').html(data);
+            }
+          });
+         
+        }
+      </script>
       
 </body>
 </html>

@@ -56,16 +56,21 @@ class UsuarioModel{
       }
     }
 
-    public function validarLogin($email,$contrasena){
-        $query= "SELECT constrasena FROM usuario WHERE email= '$email'";
-        $reslts= $this->db->Execute($query);
-        $fila= $reslts->FetchRow();
-        $conHash= $fila['constrasena'];
-
-        if (password_verify($contrasena, $conHash)) {
-            return true;
-        }else return false;
-    }
+    public function validarLogin($email, $contrasena) {
+      $query = "SELECT constrasena FROM usuario WHERE email= '$email'";
+      $reslts = $this->db->Execute($query);
+  
+      if ($reslts !== false && $reslts->RecordCount() > 0) {
+          $fila = $reslts->FetchRow();
+          $conHash = $fila['constrasena'];
+  
+          if (password_verify($contrasena, $conHash)) {
+              return true;
+          }
+      }
+  
+      return false;
+  }
   }
 
 ?>

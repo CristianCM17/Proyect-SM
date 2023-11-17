@@ -112,13 +112,18 @@ session_start();
           </tbody>
 
       </table>
-      <div class="container" id="contador">     
-      <h2>Total: '.number_format($total,2).'</h2>
-</div>
+
+         <div class="container" id="contador">     
+            <h2>Total: '.number_format($total,2).'</h2>
+        </div>
+
+        <div class="container" style="text-align: center;">
+        <button type="button" class="btn btn-primary btn-lg">Pagar</button>
+        </div>
     </div>
 </div>';
     }
-    }
+}
 
 
 ?>

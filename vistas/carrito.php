@@ -74,10 +74,6 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
     </div>
 
     
-     
-    <div class="container" id="contador">     
-                
-    </div>
     
 </main> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -120,13 +116,6 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
               $('#tablatoda').html(data); //al elemento del TableBody le ponemos las iteraciones del get
             }
         });
-       /* $.ajax({ // peticion post de ajax
-            type: "POST",
-            url: "../controlers/ctrlCarrito.php?carr=4",
-            success: function(data){ //lo cachamos en data
-              $('#contador').html(data); //al elemento del TableBody le ponemos las iteraciones del get
-            }
-        });*/
     });
 
     function cerrarSesion(){

@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (isset($_SESSION['login'])) {
-       echo "bienvenido".$_SESSION['login'];
+if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
+       echo "Bienvenido ".$_SESSION['login']['email'];
 }else {
-  header('Location: ./login.php');
+  header('Location: ../index.html');
 }
 ?>
 <!DOCTYPE html>

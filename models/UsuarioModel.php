@@ -59,7 +59,7 @@ class UsuarioModel{
     public function validarLogin($email, $contrasena) {
       $query = "SELECT constrasena FROM usuario WHERE email= '$email'";
       $reslts = $this->db->Execute($query);
-  
+    //valida que me de algun registro al hacer una consulta
       if ($reslts !== false && $reslts->RecordCount() > 0) {
           $fila = $reslts->FetchRow();
           $conHash = $fila['constrasena'];
@@ -71,6 +71,15 @@ class UsuarioModel{
   
       return false;
   }
+
+    public function encontrarRol($email){
+      $idusuario=$this->buscarId($email);
+
+      $query = "SELECT idrol FROM usuario_rol WHERE idusuario= '$idusuario'";
+      $reslts = $this->db->Execute($query);
+      $fila= $reslts->FetchRow();
+      return $fila['idrol'];
+    }
   }
 
 ?>

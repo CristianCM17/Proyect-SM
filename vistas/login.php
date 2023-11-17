@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-if (isset($_SESSION['login'])) {
+if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
      header('Location: ./carrito.php');
 }
 
@@ -81,9 +81,18 @@ if (isset($_SESSION['login'])) {
             url: "../controlers/ctrlLogin.php?log=1",
             data: formData ,
             success: function(data){
-               if (data==1) {
-                window.location.href="../vistas/carrito.php";
-                }else  $('#resajax').html(data);
+                switch (parseInt(data)) {
+                  case 1:
+                    window.location.href="../vistas/pagos.php";
+                    break;
+                  case 2:
+                    window.location.href="../vistas/carrito.php";
+                    break;
+                
+                  default:
+                  $('#resajax').html(data);
+                    break;
+                }
             }
           });
          

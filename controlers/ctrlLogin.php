@@ -15,8 +15,15 @@ session_start();
               echo "Email o contraseña incorrectos 1";
             }else {
                 if ($usuario->validarLogin($email,$contrasena)) {
-                    $_SESSION['login']= $email;
-                    echo true;
+                    $rol=$usuario->encontrarRol($email);
+                    $_SESSION['login']= array(
+                        'email'=>$email,
+                        'contrasena'=>$contrasena,
+                        'rol'=>$rol
+                    );
+                    
+                    echo $rol;
+                    
                 }  else {
                     echo "Email o contraseña incorrectos 2";
                 }

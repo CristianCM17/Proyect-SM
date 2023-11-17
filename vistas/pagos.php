@@ -1,4 +1,12 @@
+<?php 
+session_start();
+if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 1) {
+  echo "Bienvenido compañero".$_SESSION['login']['email'];
+}else {
+  header('Location: ../index.html');
 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +22,7 @@
 <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
           <a class="navbar-brand" href="../index.html"><img src="../assets/img/logo-SM.png" height="200px" alt=""></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,13 +40,11 @@
                 <a class="nav-link" href="../index.html#noticias"><h3>Noticias</h3></a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="./aboutUs.html"><h3>Acerca de nosotros</h3></a>
+                <button type="button" class="btn btn-outline-dark mr-2" class="nav-link" onclick="cerrarSesion()">Cerrar sesión</button>
               </li>
               <li>
               <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#ModalInsert" >Insertar</button>
               </li>
-
-              
             </ul>
             <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -135,10 +141,10 @@
     <div id='resajx' class="alert alert-primary"></div>
 
     <div class="row cartasmas" id="carta" >
-
-        
-
+      
       </div>
+
+      
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -201,6 +207,17 @@
             },
         })
         }
+
+        function cerrarSesion(){
+      $.ajax({ // peticion post de ajax
+            type: "POST",
+            url: "../controlers/ctrlCarrito.php?carr=4",
+            success: function(response){  
+                    location.reload(); //recargamos la pagina
+                    alert("Sesión cerrada exitosamente");
+            }
+        });
+    }
   
 </script>
     

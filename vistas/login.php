@@ -3,6 +3,8 @@
 session_start();
 if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
      header('Location: ./carrito.php');
+}elseif (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 1) {
+     header('Location: ./pagos.php');
 }
 
 ?>

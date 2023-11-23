@@ -62,10 +62,11 @@ session_start();
         $obtenerIteraciones='';
         //el total
         $total=0;
-       // $carrito=$CarritoModel->getAll();
+       
         //hacer las iteraciones necesarias para mapear lo de la base de datos e incrustarlo en el html
         foreach($_SESSION['carrito'] as $indice => $servicios) {
               $total+= $servicios['precio']*$servicios['cantidad']; 
+              $_SESSION['total']=$total;
               $obtenerIteraciones.=       
            '<tr class="table-secondary">               
             <td class="text-center" width="40%">'.$servicios['pago'].'</td>
@@ -89,7 +90,6 @@ session_start();
             
             </td>
         </tr>';
-       
         }
         
          echo '<div class="row justify-content-center">
@@ -118,7 +118,7 @@ session_start();
         </div>
 
         <div class="container" style="text-align: center;">
-        <button type="button" class="btn btn-primary btn-lg">Pagar</button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="procesarPago()">Procesar Pago</button>
         </div>
     </div>
 </div>';

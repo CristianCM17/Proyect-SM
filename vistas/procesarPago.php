@@ -25,7 +25,7 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
 
 <div class="pagoCompletado" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
   <div class="card-body">
-    <div class="wrapper"  style="text-align: center; ">
+    <div class="wrapper"  style="text-align: center;">
       <h2>TU PAGO</h2>
       <h2 class="display-3">$<?php echo number_format($_SESSION['total'],2); ?></h2>
       <button class="btn btn-primary mt-3" onclick="showSwal('success-message')">Completar Pago</button>

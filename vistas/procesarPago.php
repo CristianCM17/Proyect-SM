@@ -32,6 +32,8 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
     </div>
   </div>
 </div>
+
+<div class="container"><h2  id="ajax"></h2></div>
                     
 
 </body>
@@ -54,7 +56,14 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
         }
       }, function(value) {
         if (value) {
-          window.location.href = "./pagosCliente.php";
+            $.ajax({
+                type: "POST",
+                url: "../controlers/ctrlVenta.php?pro=2",
+                success: function(data){
+                    window.location.href = "./pagosCliente.php";
+                  // $('#ajax').html(data);
+                }
+            });
         }
       });
     } else {
@@ -62,5 +71,8 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
     } 
   };
 })(jQuery);
+
+
+
 </script>
 </html>

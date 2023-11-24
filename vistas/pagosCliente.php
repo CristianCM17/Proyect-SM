@@ -72,9 +72,7 @@
 <script>
 
     
-   /* function irCarrito() {
-      window.location.href = "./carrito.php";
-    }*/
+
 
     function agregarCarrito(formId){
       var formData= $('#' + formId).serialize(); //serializamos los datos del from dandole un id dinamico al formulario 

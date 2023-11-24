@@ -19,7 +19,8 @@ if (isset($_GET['pro'])){
             break;
         
         case 2:
-            # code...
+           $ventaModel->completarVenta();
+           unset($_SESSION['carrito']);
             break;
     }
 

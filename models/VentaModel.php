@@ -47,6 +47,15 @@
 
         return $idventa;
     }
+
+    public function nombrePago($idpago){
+        $sql = "SELECT pago AS pago FROM pagos where idpago = '$idpago'";
+        $result = $this->db->Execute($sql);
+        $fila = $result->FetchRow();
+        $pago = $fila['pago'];
+
+        return $pago;
+    }
 }
 
 

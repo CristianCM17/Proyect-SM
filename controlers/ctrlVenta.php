@@ -22,23 +22,20 @@ if (isset($_GET['pro'])){
         
         case 2:
            //$ventaModel->completarVenta();
-           //unset($_SESSION['carrito']);
-
-           MandarEmail($ultimaVenta);
-          
-
+           //unset($_SESSION['carrito']);            
+           MandarEmail($ultimaVenta,$ventaModel);
             break;
     }
 
 }
 
- function MandarEmail($ultimaVenta){
+ function MandarEmail($ultimaVenta,$ventaModel){
     $destino ="cristiandavidcardoso@gmail.com"; //$_SESSION['login']['email'];
-    $asunto = 'Sus pagos han sido Pagados exitosamente';
+    $asunto = 'Sus pagos han sido procesados exitosamente';
     //tpdl bptn ehgt itlu
       // Inicializar la variable de la tabla
     $cuerpo = '<table style="border-collapse: collapse; width: 100%;">
-    <tr style="border: 1px solid #dddddd; text-align: left; padding: 8px;">
+    <tr style="border: 1px solid #dddddd; text-align: center; padding: 8px;">
       <th>ID Venta</th>
       <th>ID Pago</th>
       <th>Precio</th>
@@ -49,7 +46,7 @@ if (isset($_GET['pro'])){
     foreach ($_SESSION['carrito'] as $key => $producto) {
     $cuerpo .= '<tr style="border: 1px solid #dddddd; text-align: center; padding: 8px;">
           <td>' . $ultimaVenta . '</td>
-          <td>' . $producto['idpago'] . '</td>
+          <td>' . $ventaModel->nombrePago($producto['idpago']) . '</td>
           <td>$' . $producto['precio'] . '</td>
           <td>' . $producto['cantidad'] . '</td>
         </tr>';

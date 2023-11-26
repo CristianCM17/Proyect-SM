@@ -60,8 +60,8 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
                 type: "POST",
                 url: "../controlers/ctrlVenta.php?pro=2",
                 success: function(data){
-                    window.location.href = "./pagosCliente.php";
-                  // $('#ajax').html(data);
+                  //  window.location.href = "./pagosCliente.php";
+                   $('#ajax').html(data);
                 }
             });
         }

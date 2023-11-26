@@ -20,13 +20,11 @@
     }
 
     public function CompletarVenta(){
-        $sql = "SELECT * FROM venta ORDER BY idventa DESC LIMIT 1";
-        $result = $this->db->Execute($sql);
-        $fila = $result->FetchRow();
-        $idventa = $fila['idventa'];
+        //encontar la ultima venta 
+        $idventa= $this->ultimaVenta();
 
         
-
+        //por cada indice hace un array que despues se inserta en venta_detalle
         foreach($_SESSION['carrito'] as $key => $producto){
             $arreglo= array();
 
@@ -37,8 +35,17 @@
 
             $this->db->autoExecute('venta_detalle', $arreglo,'INSERT');
         }
+    }
 
-      
+
+    //encontrar la ultima venta
+    public function ultimaVenta(){
+        $sql = "SELECT * FROM venta ORDER BY idventa DESC LIMIT 1";
+        $result = $this->db->Execute($sql);
+        $fila = $result->FetchRow();
+        $idventa = $fila['idventa'];
+
+        return $idventa;
     }
 }
 

@@ -30,7 +30,7 @@ if (isset($_GET['pro'])){
 }
 
  function MandarEmail($ultimaVenta,$ventaModel){
-    $destino ="cristiandavidcardoso@gmail.com"; //$_SESSION['login']['email'];
+    $destino =$_SESSION['login']['email'];
     $asunto = 'Sus pagos han sido procesados exitosamente';
     //tpdl bptn ehgt itlu
       // Inicializar la variable de la tabla
@@ -54,6 +54,7 @@ if (isset($_GET['pro'])){
 
     // Cerrar la etiqueta de la tabla
     $cuerpo .= '</table>';
+    $cuerpo .= '<h1>Total: <span style="border: 1px solid #dddddd;">$' . $_SESSION['total'] . '</span></h1>';
 
 
     $headers = "MIME-Version: 1.0\r\n";

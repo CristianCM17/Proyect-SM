@@ -21,8 +21,8 @@ if (isset($_GET['pro'])){
             break;
         
         case 2:
-           //$ventaModel->completarVenta();
-           //unset($_SESSION['carrito']);            
+           $ventaModel->completarVenta();
+           unset($_SESSION['carrito']);            
            MandarEmail($ultimaVenta,$ventaModel);
             break;
     }
@@ -64,7 +64,7 @@ if (isset($_GET['pro'])){
 
     mail($destino,$asunto,$cuerpo,$headers);
 
-    echo "correo mandado";
+   // echo "correo mandado";
 
 }
 

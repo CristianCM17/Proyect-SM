@@ -56,6 +56,27 @@
 
         return $pago;
     }
+
+
+    public function graficarVentas($fechaInicioFormato,$fechaFinFormato){
+        $query = "SELECT p.pago, COUNT(p.pago) as contador
+          FROM pagos p
+          JOIN venta_detalle vd ON vd.idpago = p.idpago
+          JOIN venta v ON v.idventa = vd.idventa
+          WHERE v.fecha BETWEEN '$fechaInicioFormato' AND '$fechaFinFormato'
+          GROUP BY 1";
+          
+        $reslts = $db->Execute($query);
+
+        // Construye un array asociativo con los datos
+        $datos = array();
+        while ($fila = $reslts->FetchRow()) {
+            $datos[] = array($fila["pago"], $fila["contador"]);
+        }
+
+        // Convierte el array a formato JSON y lo imprime
+        echo json_encode($datos);
+    }
 }
 
 

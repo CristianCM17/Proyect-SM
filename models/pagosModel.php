@@ -14,42 +14,7 @@
       return $rs;
     }
 
-  /*  public function agregarCarrito($idpago,$cantidad,$precio,$pago){
 
-      //contamos cuantos pagos estan con el mismo id
-        $checkQuery = "SELECT COUNT(*) AS count FROM carrito WHERE idpago = $idpago";
-       $rs = $this->db->Execute($checkQuery);
-       $row=$rs->FetchRow();
-       $conteo = $row['count'];
-
-
-           
-        
-      
-       //cuando no tengamos ningun pago se inserta, cuando ya tengamos uno manda el echo
-       if ($conteo>0) {
-           echo "este prodcuto ya ha sido agregado";
-       } else {
-        $carrito= array();
-        $carrito['idpago']=$idpago;
-        $carrito['cantidad']=$cantidad;
-        $carrito['precio']=$precio;
-        $carrito['subtotal']=$precio;
-        $carrito['pago']=$pago;
- 
-        $this->db->autoExecute('carrito',$carrito,'INSERT'); //hace el insert
-
-       
-        $query = "SELECT COUNT(*) AS contador FROM carrito";
-        $reslts = $this->db->Execute($query);
-        $fila= $reslts->FetchRow();
-        $contador = $fila['contador'];
-        echo $contador;
-       }
-    
-       
-       
-    }*/
 
       public function editar($idpago,$pago,$precio,$descripcion,$periodo){
         $pagos= array();  //crea un arreglo

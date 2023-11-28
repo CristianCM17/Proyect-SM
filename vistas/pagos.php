@@ -36,14 +36,14 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 1) {
               <li class="nav-item active">
                   <a class="nav-link" href="../index.html#servicios"><h3>Servicios</h3></a>
               </li>
+              <li>
+              <button type="button" class="btn btn-outline-primary ml-4" data-bs-toggle="modal" data-bs-target="#ModalInsert" >Insertar</button>
+              </li>
               <li class="nav-item active" >
-                <a class="nav-link" href="../index.html#noticias"><h3>Noticias</h3></a>
+              <button type="button" class="btn btn-outline-success ml-2" class="nav-link" onclick="irGrafico()">Grafico</button>
               </li>
               <li class="nav-item active">
-                <button type="button" class="btn btn-outline-dark mr-2" class="nav-link" onclick="cerrarSesion()">Cerrar sesión</button>
-              </li>
-              <li>
-              <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#ModalInsert" >Insertar</button>
+                <button type="button" class="btn btn-outline-dark ml-2" class="nav-link" onclick="cerrarSesion()">Cerrar sesión</button>
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -159,18 +159,6 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 1) {
       window.location.href = "./carrito.php";
     }
 
-  /*  function agregarCarrito(formId){
-      var formData= $('#' + formId).serialize(); //serializamos los datos del from dandole un id dinamico al formulario 
-          $.ajax({ // peticion post de ajax
-            type: "POST",
-            url: "../controlers/ctrlPagos.php?opc=1",
-            data: formData,
-            success: function(data){ //lo cachamos en data
-              $('#cantidadCarrito').html(data); //al elemento con ese id le ponemos el contenido que se mande
-            }
-        })
-        }*/
-
         function editar(){
       var formData= $('#frmEdPago').serialize(); //serializamos los datos del from 
           $.ajax({ // peticion post de ajax
@@ -217,6 +205,10 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 1) {
                     alert("Sesión cerrada exitosamente");
             }
         });
+    }
+
+    function irGrafico(){
+      window.location.href = "./grafico.php";
     }
   
 </script>

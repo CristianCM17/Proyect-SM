@@ -26,12 +26,7 @@ if (isset($_GET['pro'])){
            MandarEmail($ultimaVenta,$ventaModel);
             break;
         case 3: 
-          $fechaInicio = $_POST['fechaInicio'];
-          $fechaFin = $_POST['fechaFin'];
-
-          // Convertir al formato 'YYYY-MM-DD'
-          $fechaInicioFormato = date('Y-m-d', strtotime($fechaInicio));
-          $fechaFinFormato = date('Y-m-d', strtotime($fechaFin));
+         
           $ventaModel->graficarVentas($fechaInicioFormato,$fechaFinFormato);
 
           break;

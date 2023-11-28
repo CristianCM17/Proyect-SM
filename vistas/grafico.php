@@ -1,20 +1,40 @@
 <?php 
 require_once '../models/conexion.php';
 include_once '../adodb5/adodb.inc.php';
-/*session_start();
-if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 1) {
-  echo "Bienvenido compañero".$_SESSION['login']['email'];
-}else {
-  header('Location: ../index.html');
+      /*session_start();
+      if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 1) {
+        echo "Bienvenido compañero".$_SESSION['login']['email'];
+      }else {
+        header('Location: ../index.html');
 
-}*/
+      }*/
 
-$con = new Conexion();
-$db = $con->conectar();
+    $con = new Conexion();
+    $db = $con->conectar();
 
-                $query = "SELECT p.pago, COUNT(p.pago) contador from pagos p join venta_detalle vd on vd.idpago=p.idpago GROUP BY 1;";
-                $reslts = $db->Execute($query);
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $fechaInicio = $_POST['fechaInicio'];
+      $fechaFin = $_POST['fechaFin'];
 
+      // Convertir al formato 'YYYY-MM-DD'
+      $fechaInicioFormato = date('Y-m-d', strtotime($fechaInicio));
+      $fechaFinFormato = date('Y-m-d', strtotime($fechaFin));
+    $query = "SELECT p.pago, COUNT(p.pago) as contador
+    FROM pagos p
+    JOIN venta_detalle vd ON vd.idpago = p.idpago
+    JOIN venta v ON v.idventa = vd.idventa
+    WHERE v.fecha BETWEEN '$fechaInicioFormato' AND '$fechaFinFormato'
+    GROUP BY 1";
+                    $reslts = $db->Execute($query);
+    }else {
+      $query = "SELECT p.pago, COUNT(p.pago) as contador
+    FROM pagos p
+    JOIN venta_detalle vd ON vd.idpago = p.idpago
+    JOIN venta v ON v.idventa = vd.idventa
+    GROUP BY 1";
+
+    $reslts = $db->Execute($query);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +82,7 @@ $db = $con->conectar();
       </header>
 
         <div class="container mt-5">
-          <form method="post" action="tu_archivo_php_que_recibe_post.php">
+          <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <div class="row justify-content-center">
               <div class="col-md-4">
                 <label for="fechaInicio">Fecha de Inicio:</label>

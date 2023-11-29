@@ -30,7 +30,10 @@ if (isset($_GET['opc'])){
       $tabla.=   
           ' <tr>
               <td>
-                  <button class="btn btn-primary">Detalle</button>
+              <form method="post" action="../vistas/reportes.php">
+                    <input type="hidden" name="idventa" value="'.$venta->fields[0].'">
+                  <button type="submit" class="btn btn-primary" onclick="reporte('.$venta->fields[0].')">Detalle</button>
+                </form>
               </td>
               <td>'.$venta->fields[0].'</td>
               <td>'.$venta->fields[2].'</td>

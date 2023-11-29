@@ -94,6 +94,9 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
                     </div>
                 </div>
 </div> 
+
+
+
 </body>
 </html>
 <script>

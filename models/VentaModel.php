@@ -15,6 +15,15 @@
         return $rs;
       }
 
+      public function getAllVenta_DetallePorId($idventa){
+        $query = "SELECT * FROM venta_detalle where idventa= '$idventa'";
+        $rs = $this->db->Execute($query);
+        
+        return $rs;
+      }
+
+    
+
     public function insertarVenta($idUsuario,$total){
         
         $venta= array();

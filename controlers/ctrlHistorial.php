@@ -9,22 +9,22 @@ session_start();
 if (isset($_GET['opc'])){
     $usuarioModel= new UsuarioModel;
     $ventaModel= new VentaModel;
-    //$idUsuario= $usuarioModel->buscarId($_SESSION['login']['email']);
+    $idUsuario= $usuarioModel->buscarId($_SESSION['login']['email']);
     $ultimaVenta=$ventaModel->ultimaVenta();
     
     switch ($_GET['opc']) {
         case 1:
      //mapea la tabla de venta por usuario 
-         historialVentas($ventaModel);
+         historialVentas($ventaModel,$idUsuario);
             break;
     }
 
 }
 
 //mapear la tabla ventas
-  function historialVentas($ventaModel){
+  function historialVentas($ventaModel,$idUsuario){
     $tabla="";
-    $venta=$ventaModel->getAllVentas();
+    $venta=$ventaModel->getAllVentasPorId($idUsuario);
 
     while (!$venta->EOF) {
       $tabla.=   

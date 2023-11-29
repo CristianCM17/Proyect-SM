@@ -8,8 +8,8 @@
         $this->db = $con->conectar();
     }
 
-    public function getAllVentas(){
-        $query = "SELECT * FROM venta";
+    public function getAllVentasPorId($idUsuario){
+        $query = "SELECT * FROM `venta` where idusuario= '$idUsuario'";
         $rs = $this->db->Execute($query);
         
         return $rs;

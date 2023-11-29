@@ -1,13 +1,13 @@
 <?php 
 require_once '../models/conexion.php';
 include_once '../adodb5/adodb.inc.php';
-      /*session_start();
-      if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 1) {
-        echo "Bienvenido compañero".$_SESSION['login']['email'];
-      }else {
-        header('Location: ../index.html');
+session_start();
+if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 1) {
+        echo "Bienvenido compañero ".$_SESSION['login']['email'];
+ }else {
+  header('Location: ../index.html');
 
-      }*/
+  }
 
     $con = new Conexion();
     $db = $con->conectar();

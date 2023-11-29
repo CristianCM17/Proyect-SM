@@ -35,6 +35,9 @@
                 <a class="nav-link" href="./aboutUs.html"><h3>Acerca de nosotros</h3></a>
               </li>
               <li class="nav-item active">
+                <a class="nav-link" href="../vistas/historial.php"><h3>Historial de pagos</h3></a>
+              </li>
+              <li class="nav-item active">
                 <form action="../controlers/alogin.php" method="post">
                 <button class="btn btn-outline-dark btnCarrito" type="submit" name="ircarrito">Carrito (<span id="cantidadCarrito"><?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']); ?></span>)</button>
                 </form>

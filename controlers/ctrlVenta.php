@@ -21,18 +21,20 @@ if (isset($_GET['pro'])){
             break;
         
         case 2:
+          //hacer el detalle de la vanta
            $ventaModel->completarVenta();
-           unset($_SESSION['carrito']);            
-           MandarEmail($ultimaVenta,$ventaModel);
+           unset($_SESSION['carrito']);   //borra el contenido del carrito         
+           MandarEmail($ultimaVenta,$ventaModel); //manda email con el detalle de la vanta
             break;
         case 3: 
-         
+         //graficar
           $ventaModel->graficarVentas($fechaInicioFormato,$fechaFinFormato);
 
           break;
     }
 
 }
+
 
  function MandarEmail($ultimaVenta,$ventaModel){
     $destino =$_SESSION['login']['email'];

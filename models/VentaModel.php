@@ -8,6 +8,13 @@
         $this->db = $con->conectar();
     }
 
+    public function getAllVentas(){
+        $query = "SELECT * FROM venta";
+        $rs = $this->db->Execute($query);
+        
+        return $rs;
+      }
+
     public function insertarVenta($idUsuario,$total){
         
         $venta= array();

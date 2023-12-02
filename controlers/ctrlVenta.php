@@ -21,10 +21,16 @@ if (isset($_GET['pro'])){
             break;
         
         case 2:
-          //hacer el detalle de la vanta
-           $ventaModel->completarVenta();
-           unset($_SESSION['carrito']);   //borra el contenido del carrito         
-           MandarEmail($ultimaVenta,$ventaModel); //manda email con el detalle de la vanta
+          //recibir el idTransaccion del json de la venta
+          $json = file_get_contents('php://input');
+          $datos = json_decode($json, true);
+          $idTransaccion=$datos['idTransaccion'];
+        
+         //hacer el detalle de la vanta
+           $ventaModel->completarVenta();      
+           MandarEmail($ultimaVenta,$ventaModel); //manda email con el detalle de la vanta*/
+           $ventaModel->editaridTransaccion($idTransaccion); //agrega en venta la transaccion y el estatus
+           unset($_SESSION['carrito']);   //borra el contenido del carrito   
             break;
         case 3: 
          //graficar

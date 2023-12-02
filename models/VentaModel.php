@@ -35,6 +35,16 @@
         $this->db->autoExecute('venta', $venta,'INSERT');
     }
 
+    public function editaridTransaccion($idTransaccion){
+        $idventa= $this->ultimaVenta();
+        $venta= array();  //crea un arreglo
+        $venta['idtransaccion']=$idTransaccion;
+        $venta['estado']="Completado";
+        
+
+        $this->db->autoExecute('venta', $venta,'UPDATE','idventa = '.'\''.$idventa.'\''); //hace el update
+      }
+
     public function CompletarVenta(){
         //encontar la ultima venta 
         $idventa= $this->ultimaVenta();

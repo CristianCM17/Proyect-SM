@@ -103,8 +103,19 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 1) {
 
       
 
-
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
          <script type="text/javascript">
+                        function cerrarSesion(){
+      $.ajax({ // peticion post de ajax
+            type: "POST",
+            url: "../controlers/ctrlCarrito.php?carr=4",
+            success: function(response){  
+                    location.reload(); //recargamos la pagina
+                    alert("Sesión cerrada exitosamente");
+            }
+        });
+    }
+
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
@@ -130,4 +141,5 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 1) {
         chart.draw(data, options);
       }
     </script>
+
 </body>

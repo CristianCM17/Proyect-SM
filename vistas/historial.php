@@ -1,11 +1,11 @@
 <?php
-/*session_start();
+session_start();
 if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
         echo "Bienvenido compañero ".$_SESSION['login']['email'];
  }else {
   header('Location: ../index.html');
 
-  }*/
+  }
 
 ?>
 <!DOCTYPE html>

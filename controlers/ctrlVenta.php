@@ -31,6 +31,7 @@ if (isset($_GET['pro'])){
            MandarEmail($ultimaVenta,$ventaModel); //manda email con el detalle de la vanta*/
            $ventaModel->editaridTransaccion($idTransaccion); //agrega en venta la transaccion y el estatus
            unset($_SESSION['carrito']);   //borra el contenido del carrito   
+           
             break;
         case 3: 
          //graficar

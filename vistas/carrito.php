@@ -42,6 +42,9 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
                             <li class="nav-item">
                             <a class="nav-link" href="../vistas/pagosCliente.php"><h3>Pagos</h3></a>
                             </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="../vistas/historial.php"><h3>Historial de pagos</h3></a>
+                            </li>
 
                             <li class="nav-item">
                             <button class="nav-link" onclick="cerrarSesion()"><h3>Cerrar sesión</h3></button>

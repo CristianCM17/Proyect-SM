@@ -1,20 +1,21 @@
 <?php 
-/*session_start();
+session_start();
 if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
   
 }else {
   header('Location: ../index.html');
 
-}*/
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/procesarPago.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=AZnlm2WUZX47Nzx8inmVJNbeyonU95rEK-Exod_UtI14m53dOhgLD6PZmw8XTOlCKFDJd-RatI6jZKUS&currency=MXN"></script>
     <title>Municipio de Santiago Maravatío</title>
@@ -24,17 +25,22 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
 
 
 
-<!--<div class="pagoCompletado" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-  <div class="card-body">
-    <div class="wrapper"  style="text-align: center;">
-      <h2>TU PAGO</h2>
-      <h2 class="display-3">$</h2>
-      <button class="btn btn-primary mt-3" onclick="showSwal('success-message')">Completar Pago</button>
-    </div>
-  </div>
-</div>-->
 
-<div id="paypal-button-container"  class="container"></div>
+<div class="container">
+
+	<div class="card">
+  	<div class="card-body py-5 px-4">
+    <h6 class="card-title text-muted">Municipio de Santiago Maravatio</h6>
+    <h2 class="text">Completar los pagos</h2>
+ 	<h3 class="Price pt-3"><i class="fa fa-dollar mr-1"></i>$<?php echo $_SESSION['total'] ?></h3>
+   <p class="card-text text-muted">Su pago esta protegido.<br>Sus datos estan seguros.</p>
+    <div id="paypal-button-container"  class="container"></div>
+    <footer class="footer text-muted pt-5"><p class="mytext mt-3">"El pueblo hace la historia"<br>H.Ayuntamiento 2021-2024</p></footer>
+    </div>
+	</div>
+
+</div>
+
 <script>
   paypal.Buttons({
     style:{
@@ -46,7 +52,7 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
         return actions.order.create({
           purchase_units:[{
             amount: {
-              value: 100 //monto que va ser que se debe de pagar
+              value: <?php echo $_SESSION['total'] ?> //monto que va ser que se debe de pagar
             }
           }]
         })
@@ -66,7 +72,11 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
                 idTransaccion: idTransaccion
               })
             })
-        });
+        }).then(function() {
+    // Redirigir a otra ventana después de la solicitud al servidor
+    window.location.href = './historial.php';
+});
+        //window.location.href = "./historial.php";
     },
 
     onCancel: function(data){
@@ -76,42 +86,5 @@ if (isset($_SESSION['login']) && $_SESSION['login']['rol'] == 2) {
 </script>                    
 
 </body>
-<script>
-(function($) {
-  showSwal = function(type) {
-    'use strict';
-    if (type === 'success-message') {
-      swal({
-        title: 'Felicidades!',
-        text: 'Has pagado tus servicios correctamente',
-        type: 'success',
-        buttons: {
-          pagar: {
-            text: "Aceptar",
-            value: true,
-            visible: true,
-            className: "btn btn-primary",
-          }
-        }
-      }, function(value) {
-        if (value) {
-            $.ajax({
-                type: "POST",
-                url: "../controlers/ctrlVenta.php?pro=2",
-                success: function(data){
-                   window.location.href = "./pagosCliente.php";
-                  // $('#ajax').html(data);
-                }
-            });
-        }
-      });
-    } else {
-      swal("Error occurred!");
-    } 
-  };
-})(jQuery);
 
-
-
-</script>
 </html>

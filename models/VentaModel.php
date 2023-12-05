@@ -63,6 +63,16 @@
         }
     }
 
+    //recupera el total de la venta
+    public function totalVenta($idventa){
+        $sql = "SELECT total FROM venta where idventa='$idventa'";
+        $result = $this->db->Execute($sql);
+        $fila = $result->FetchRow();
+        $total = $fila['total'];
+
+        return $total;
+    }
+
 
     //encontrar la ultima venta
     public function ultimaVenta(){
